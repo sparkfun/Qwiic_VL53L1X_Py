@@ -477,7 +477,7 @@ class VL53L1X(object):
 		if i2c_driver == None:
 			# self._i2c = qwiic_i2c.getI2CDriver()
 			# New Driver smbus2
-			self._i2c = smbus2.SMBus(1)
+			self._i2c = SMBus(1)
 	
 			if self._i2c == None:
 				print("Unable to load I2C driver for this platform.")
@@ -1455,8 +1455,8 @@ class VL53L1X(object):
 			return
 
 		# Setup for read/write transactions on smbus 2
-		write = self._i2c.i2c_msg.write(address, [registerMSB, registerLSB])	# Write part of transaction
-		read = self._i2c.i2c_msg.read(address, nbytes)							# Read part of transaction
+		write = i2c_msg.write(address, [registerMSB, registerLSB])	# Write part of transaction
+		read = i2c_msg.read(address, nbytes)						# Read part of transaction
 
 		buffer = self._i2c.i2c_rdwr(write, read)
 
