@@ -1222,7 +1222,6 @@ class VL53L1X(object):
 		* @return 0:success, !=0: failed
 		* @return offset pointer contains the offset found in mm
 		"""
-		i = 0
 		tmp = 0
 		AverageDistance = 0
 		self.status = 0
@@ -1259,7 +1258,6 @@ class VL53L1X(object):
 		* @return 0: success, !=0: failed
 		* @return xtalk pointer contains the xtalk value found in cps (number of photons in count per second)
 		"""
-		i = 0
 		tmp= 0
 		AverageSignalRate = 0
 		AverageDistance = 0
