@@ -86,47 +86,47 @@ from smbus2 import SMBus, i2c_msg	# I2C bus driver package
 # else:
 # 	VL53L1X_API
 
-SOFT_RESET =															[0x00, 0x00]
-VL53L1_I2C_SLAVE__DEVICE_ADDRESS =										[0x00, 0x01]
-VL53L1_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND =							[0x00, 0x08]
-ALGO__CROSSTALK_COMPENSATION_PLANE_OFFSET_KCPS =						[0x00, 0x16]
-ALGO__CROSSTALK_COMPENSATION_X_PLANE_GRADIENT_KCPS =					[0x00, 0x18]
-ALGO__CROSSTALK_COMPENSATION_Y_PLANE_GRADIENT_KCPS =					[0x00, 0x1A]
-ALGO__PART_TO_PART_RANGE_OFFSET_MM =									[0x00, 0x1E]
-MM_CONFIG__INNER_OFFSET_MM =											[0x00, 0x20]
-MM_CONFIG__OUTER_OFFSET_MM =											[0x00, 0x22]
-GPIO_HV_MUX__CTRL =														[0x00, 0x30]
-GPIO__TIO_HV_STATUS =													[0x00, 0x31]
-SYSTEM__INTERRUPT_CONFIG_GPIO =											[0x00, 0x46]
-PHASECAL_CONFIG__TIMEOUT_MACROP =										[0x00, 0x4B]
-RANGE_CONFIG__TIMEOUT_MACROP_A_HI =										[0x00, 0x5E]
-RANGE_CONFIG__VCSEL_PERIOD_A =											[0x00, 0x60]
-RANGE_CONFIG__VCSEL_PERIOD_B =											[0x00, 0x63]
-RANGE_CONFIG__TIMEOUT_MACROP_B_HI =										[0x00, 0x61]
-RANGE_CONFIG__TIMEOUT_MACROP_B_LO =										[0x00, 0x62]
-RANGE_CONFIG__SIGMA_THRESH =											[0x00, 0x64]
-RANGE_CONFIG__MIN_COUNT_RATE_RTN_LIMIT_MCPS =							[0x00, 0x66]
-RANGE_CONFIG__VALID_PHASE_HIGH =										[0x00, 0x69]
-VL53L1_SYSTEM__INTERMEASUREMENT_PERIOD =								[0x00, 0x6C]
-SYSTEM__THRESH_HIGH =													[0x00, 0x72]
-SYSTEM__THRESH_LOW =													[0x00, 0x74]
-SD_CONFIG__WOI_SD0 =													[0x00, 0x78]
-SD_CONFIG__INITIAL_PHASE_SD0 =											[0x00, 0x7A]
-ROI_CONFIG__USER_ROI_CENTRE_SPAD =										[0x00, 0x7F]
-ROI_CONFIG__USER_ROI_REQUESTED_GLOBAL_XY_SIZE =							[0x00, 0x80]
-SYSTEM__SEQUENCE_CONFIG =												[0x00, 0x81]
-VL53L1_SYSTEM__GROUPED_PARAMETER_HOLD =									[0x00, 0x82]
-SYSTEM__INTERRUPT_CLEAR =												[0x00, 0x86]
-SYSTEM__MODE_START =													[0x00, 0x87]
-VL53L1_RESULT__RANGE_STATUS =											[0x00, 0x89]
-VL53L1_RESULT__DSS_ACTUAL_EFFECTIVE_SPADS_SD0 =							[0x00, 0x8C]
-RESULT__AMBIENT_COUNT_RATE_MCPS_SD =									[0x00, 0x90]
-VL53L1_RESULT__FINAL_CROSSTALK_CORRECTED_RANGE_MM_SD0 =					[0x00, 0x96]
-VL53L1_RESULT__PEAK_SIGNAL_COUNT_RATE_CROSSTALK_CORRECTED_MCPS_SD0 =	[0x00, 0x98]
-VL53L1_RESULT__OSC_CALIBRATE_VAL =										[0x00, 0xDE]
-VL53L1_FIRMWARE__SYSTEM_STATUS =										[0x00, 0xE5]
-VL53L1_IDENTIFICATION__MODEL_ID =										[0x01, 0x0F]
-VL53L1_ROI_CONFIG__MODE_ROI_CENTRE_SPAD =								[0x01, 0x3E]
+SOFT_RESET =															0x0000
+VL53L1_I2C_SLAVE__DEVICE_ADDRESS =										0x0001
+VL53L1_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND =							0x0008
+ALGO__CROSSTALK_COMPENSATION_PLANE_OFFSET_KCPS =						0x0016
+ALGO__CROSSTALK_COMPENSATION_X_PLANE_GRADIENT_KCPS =					0x0018
+ALGO__CROSSTALK_COMPENSATION_Y_PLANE_GRADIENT_KCPS =					0x001A
+ALGO__PART_TO_PART_RANGE_OFFSET_MM =									0x001E
+MM_CONFIG__INNER_OFFSET_MM =											0x0020
+MM_CONFIG__OUTER_OFFSET_MM =											0x0022
+GPIO_HV_MUX__CTRL =														0x0030
+GPIO__TIO_HV_STATUS =													0x0031
+SYSTEM__INTERRUPT_CONFIG_GPIO =											0x0046
+PHASECAL_CONFIG__TIMEOUT_MACROP =										0x004B
+RANGE_CONFIG__TIMEOUT_MACROP_A_HI =										0x005E
+RANGE_CONFIG__VCSEL_PERIOD_A =											0x0060
+RANGE_CONFIG__VCSEL_PERIOD_B =											0x0063
+RANGE_CONFIG__TIMEOUT_MACROP_B_HI =										0x0061
+RANGE_CONFIG__TIMEOUT_MACROP_B_LO =										0x0062
+RANGE_CONFIG__SIGMA_THRESH =											0x0064
+RANGE_CONFIG__MIN_COUNT_RATE_RTN_LIMIT_MCPS =							0x0066
+RANGE_CONFIG__VALID_PHASE_HIGH =										0x0069
+VL53L1_SYSTEM__INTERMEASUREMENT_PERIOD =								0x006C
+SYSTEM__THRESH_HIGH =													0x0072
+SYSTEM__THRESH_LOW =													0x0074
+SD_CONFIG__WOI_SD0 =													0x0078
+SD_CONFIG__INITIAL_PHASE_SD0 =											0x007A
+ROI_CONFIG__USER_ROI_CENTRE_SPAD =										0x007F
+ROI_CONFIG__USER_ROI_REQUESTED_GLOBAL_XY_SIZE =							0x0080
+SYSTEM__SEQUENCE_CONFIG =												0x0081
+VL53L1_SYSTEM__GROUPED_PARAMETER_HOLD =									0x0082
+SYSTEM__INTERRUPT_CLEAR =												0x0086
+SYSTEM__MODE_START =													0x0087
+VL53L1_RESULT__RANGE_STATUS =											0x0089
+VL53L1_RESULT__DSS_ACTUAL_EFFECTIVE_SPADS_SD0 =							0x008C
+RESULT__AMBIENT_COUNT_RATE_MCPS_SD =									0x0090
+VL53L1_RESULT__FINAL_CROSSTALK_CORRECTED_RANGE_MM_SD0 =					0x0096
+VL53L1_RESULT__PEAK_SIGNAL_COUNT_RATE_CROSSTALK_CORRECTED_MCPS_SD0 =	0x0098
+VL53L1_RESULT__OSC_CALIBRATE_VAL =										0x00DE
+VL53L1_FIRMWARE__SYSTEM_STATUS =										0x00E5
+VL53L1_IDENTIFICATION__MODEL_ID =										0x010F
+VL53L1_ROI_CONFIG__MODE_ROI_CENTRE_SPAD =								0x013E
 
 _VL53L1X_DEFAULT_DEVICE_ADDRESS =										0x52
 ###############################################################################
@@ -137,9 +137,9 @@ _DEFAULT_NAME = "Qwiic 4m Distance Sensor (ToF)"
 # From vL53l1x_class.cpp C++ File
 ###############################################################################
 ###############################################################################
-ALGO__PART_TO_PART_RANGE_OFFSET_MM =									[0x00, 0x1E]
-MM_CONFIG__INNER_OFFSET_MM =											[0x00, 0x20]
-MM_CONFIG__OUTER_OFFSET_MM = 											[0x00, 0x22]
+ALGO__PART_TO_PART_RANGE_OFFSET_MM =									0x001E
+MM_CONFIG__INNER_OFFSET_MM =											0x0020
+MM_CONFIG__OUTER_OFFSET_MM = 											0x0022
 
 # DEBUG_MODE
 
@@ -478,11 +478,7 @@ class VL53L1X(object):
 			# self._i2c = qwiic_i2c.getI2CDriver()
 			# New Driver smbus2
 			self._i2c = smbus2.SMBus(1)
-
-			# Setup for read Byte/Word on smbus 2
-			self.readByte = self._i2c.i2c_msg.read(self.address, 1)
-			self.readWord = self._i2c.i2c_msg.read(self.address, 2)
-			
+	
 			if self._i2c == None:
 				print("Unable to load I2C driver for this platform.")
 				return
@@ -536,20 +532,14 @@ class VL53L1X(object):
 		self.status = self.SetI2CAddress(address)
 	
 		if self.debug == 1:
-			# byteData = self._i2c.readByte(self.address, 0x010F)
-			write = self._i2c.i2c_msg.write(self.address, [0x01, 0x0F])
-			byteData = self._i2c.i2c_rdwr(write,self.readByte)
+			byteData = self.__i2cRead(self.address, 0x010F, 1)
 			print("VL53L1X Model_ID: %s \n", byteData)
 
-			# byteData = self._i2c.readByte(self.address, 0x0110)
-			write = self._i2c.i2c_msg.write(self.address, [0x01, 0x10])
-			byteData = self._i2c.i2c_rdwr(write,self.readByte)
+			byteData = self.__i2cRead(self.address, 0x0110, 1)
 			print("VL53L1X Module_Type: %s \n", byteData)
 
-			# wordData = self._i2c.readWord(self.address, 0x010F)
-			write = self._i2c.i2c_msg.write(self.address, [0x01, 0x0F])
-			wordData = self._i2c.i2c_rdwr(write,self.readWord)
-			print("VL53L1X: %s \n", (wordData[0] << 8 + wordData[1]) )
+			wordData = self.__i2cRead(self.address, 0x010F, 2)
+			print("VL53L1X: %s \n", wordData)
 	
 	
 		while (not sensorState and not self.status):
@@ -587,8 +577,7 @@ class VL53L1X(object):
 		"""
 		self.status = 0
 
-		# self.status = self._i2c.writeByte(self.address, VL53L1_I2C_SLAVE__DEVICE_ADDRESS, new_address >> 1)
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [VL53L1_I2C_SLAVE__DEVICE_ADDRESS[1], new_address >> 1])
+		self.status = self.__i2cWrite(self.address, VL53L1_I2C_SLAVE__DEVICE_ADDRESS, new_address >> 1, 1)
 		self.address = new_address
 		
 		return self.status
@@ -604,8 +593,7 @@ class VL53L1X(object):
 		tmp=0
 
 		for Addr in range(0x2D, 0x87 + 1):
-			# self.status = self._i2c.writeByte(self.address, Addr, VL51L1X_DEFAULT_CONFIGURATION[Addr - 0x2D])
-			self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [Addr, VL51L1X_DEFAULT_CONFIGURATION[Addr - 0x2D] ])
+			self.status = self.__i2cWrite(self.address, Addr, VL51L1X_DEFAULT_CONFIGURATION[Addr - 0x2D], 1)
 		
 		self.status = self.StartRanging()
 		while(tmp==0):
@@ -614,12 +602,8 @@ class VL53L1X(object):
 		tmp = 0
 		self.status = self.ClearInterrupt()
 		self.status = self.StopRanging()
-
-		# self.status = self._i2c.writeByte(self.address, VL53L1_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND, 0x09) #  two bounds VHV
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [VL53L1_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND[1], 0x09]) # two bounds VHV
-
-		# self.status = self._i2c.writeByte(self.address, 0x0B, 0) #  start VHV from the previous temperature
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [0x0B, 0]) # start VHV from the previous temperature
+		self.status = self.__i2cWrite(self.address, VL53L1_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND, 0x09, 1) #  two bounds VHV
+		self.status = self.__i2cWrite(self.address, 0x0B, 0, 1) #  start VHV from the previous temperature
 		
 		return self.status
 
@@ -630,9 +614,7 @@ class VL53L1X(object):
 		* 			to arm the interrupt for the next data ready event.
 		"""
 		self.status = 0
-
-		# self.status = self._i2c.writeByte(self.address, SYSTEM__INTERRUPT_CLEAR, 0x01)
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [SYSTEM__INTERRUPT_CLEAR[1], 0x01])
+		self.status = self.__i2cWrite(self.address, SYSTEM__INTERRUPT_CLEAR, 0x01, 1)
 
 		return self.status
 
@@ -643,15 +625,10 @@ class VL53L1X(object):
 		* 			1=active high (default), 0=active low
 		"""
 		self.status = 0
-
-		# Temp = self._i2c.readByte(self.address, GPIO_HV_MUX__CTRL)
-		write = self._i2c.i2c_msg.write(self.address, GPIO_HV_MUX__CTRL)
-		Temp = self._i2c.i2c_rdwr(write,self.readByte)
+		Temp = self.__i2cRead(self.address, GPIO_HV_MUX__CTRL, 1)
 
 		Temp = Temp & 0xEF
-
-		# self.status = self._i2c.writeByte(self.address, GPIO_HV_MUX__CTRL, Temp | (not (NewPolarity & 1)) << 4)
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [GPIO_HV_MUX__CTRL[1], Temp | (not (NewPolarity & 1)) << 4])
+		self.status = self.__i2cWrite(self.address, GPIO_HV_MUX__CTRL, Temp | (not (NewPolarity & 1)) << 4, 1)
 
 		return self.status
 
@@ -662,11 +639,7 @@ class VL53L1X(object):
 		* 			1=active high (default), 0=active low
 		"""
 		self.status = 0
-
-		# Temp = self._i2c.readByte(self.address, GPIO_HV_MUX__CTRL)
-		write = self._i2c.i2c_msg.write(self.address, GPIO_HV_MUX__CTRL)
-		Temp = self._i2c.i2c_rdwr(write,self.readByte)
-
+		Temp = self.__i2cRead(self.address, GPIO_HV_MUX__CTRL, 1)
 		Temp = Temp & 0x10
 		pInterruptPolarity = not (Temp >> 4)
 
@@ -680,9 +653,7 @@ class VL53L1X(object):
 		* 1=active high (default), 0=active low, use SetInterruptPolarity() to change the interrupt polarity if required.
 		"""
 		self.status = 0
-
-		# self.status = self._i2c.writeByte(self.address, SYSTEM__MODE_START, 0x40)	#  Enable VL53L1X
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [SYSTEM__MODE_START[1], 0x40])	# Enable VL53L1X
+		self.status = self.__i2cWrite(self.address, SYSTEM__MODE_START, 0x40, 1)	#  Enable VL53L1X
 
 		return self.status
 
@@ -692,9 +663,7 @@ class VL53L1X(object):
 		* @brief This function stops the ranging.
 		"""
 		self.status = 0
-
-		# self.status = self._i2c.writeByte(self.address, SYSTEM__MODE_START, 0x00)	#  Disable VL53L1X
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [SYSTEM__MODE_START, 0x00])	# Disable VL53L1X
+		self.status = self.__i2cWrite(self.address, SYSTEM__MODE_START, 0x00, 1)	#  Disable VL53L1X
 
 		return self.status
 
@@ -707,10 +676,7 @@ class VL53L1X(object):
 		self.status = 0
 
 		IntPol = self.GetInterruptPolarity()
-
-		# Temp = self._i2c.readByte(self.address, GPIO__TIO_HV_STATUS)
-		write = self._i2c.i2c_msg.write(self.address, GPIO__TIO_HV_STATUS)
-		Temp = self._i2c.i2c_rdwr(write,self.readByte)
+		Temp = self.__i2cRead(self.address, GPIO__TIO_HV_STATUS, 1)
 		
 		# Read in the register to check if a new value is available
 		if (self.status == 0):
@@ -733,90 +699,49 @@ class VL53L1X(object):
 		if (DM == 0):
 			return 1
 		elif (DM == 1):	# Short DistanceMode
-			# if TimingBudgetInMs == 15: # only available in short distance mode
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x01D)
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x0027)
-			# elif TimingBudgetInMs == 20:
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x0051)
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x006E)
-			# elif TimingBudgetInMs == 33:
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x00D6)
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x006E)
-			# elif TimingBudgetInMs == 50:
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x1AE)
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x01E8)
-			# elif TimingBudgetInMs == 100:
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x02E1)
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x0388)
-			# elif TimingBudgetInMs == 200:
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x03E1)
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x0496)
-			# elif TimingBudgetInMs == 500:
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x0591)
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x05C1)
-
-			if TimingBudgetInMs == 15: #  only available in short distance mode
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_A_HI[1], 0x00, 0x1D])
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_B_HI[1], 0x00, 0x27])
+			if TimingBudgetInMs == 15: # only available in short distance mode
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x01D, 2)
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x0027, 2)
 			elif TimingBudgetInMs == 20:
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_A_HI[1], 0x00, 0x51])
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_B_HI[1], 0x00, 0x6E])
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x0051, 2)
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x006E, 2)
 			elif TimingBudgetInMs == 33:
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_A_HI[1], 0x00, 0xD6])
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_B_HI[1], 0x00, 0x6E])
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x00D6, 2)
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x006E, 2)
 			elif TimingBudgetInMs == 50:
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_A_HI[1], 0x01, 0xAE])
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_B_HI[1], 0x01, 0xE8])
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x1AE, 2)
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x01E8, 2)
 			elif TimingBudgetInMs == 100:
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_A_HI[1], 0x02, 0xE1])
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_B_HI[1], 0x03, 0x88])
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x02E1, 2)
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x0388, 2)
 			elif TimingBudgetInMs == 200:
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_A_HI[1], 0x03, 0xE1])
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_B_HI[1], 0x04, 0x96])
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x03E1, 2)
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x0496, 2)
 			elif TimingBudgetInMs == 500:
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_A_HI[1], 0x05, 0x91])
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_B_HI[1], 0x05, 0xC1])
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x0591, 2)
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x05C1, 2)
 			else:
 				self.status = 1
 			
 		else:
-			# if TimingBudgetInMs == 20:
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x001E)
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x0022)
-			# elif TimingBudgetInMs == 33:
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x0060)
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x006E)
-			# elif TimingBudgetInMs == 50:
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x00AD)
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x00C6)
-			# elif TimingBudgetInMs == 100:
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x01CC)
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x01EA)
-			# elif TimingBudgetInMs == 200:
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x02D9)
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x02F8)
-			# elif TimingBudgetInMs == 500:
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x048F)
-			# 	self._i2c.writeWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x04A4)
-
 			if TimingBudgetInMs == 20:
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_A_HI[1], 0x00, 0x1E])
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_B_HI[1], 0x00, 0x22])
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x001E, 2)
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x0022, 2)
 			elif TimingBudgetInMs == 33:
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_A_HI[1], 0x00, 0x60])
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_B_HI[1], 0x00, 0x6E])
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x0060, 2)
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x006E, 2)
 			elif TimingBudgetInMs == 50:
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_A_HI[1], 0x00, 0xAD])
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_B_HI[1], 0x00, 0xC6])
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x00AD, 2)
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x00C6, 2)
 			elif TimingBudgetInMs == 100:
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_A_HI[1], 0x01, 0xCC])
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_B_HI[1], 0x01, 0xEA])
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x01CC, 2)
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x01EA, 2)
 			elif TimingBudgetInMs == 200:
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_A_HI[1], 0x02, 0xD9])
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_B_HI[1], 0x02, 0xF8])
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x02D9, 2)
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x02F8, 2)
 			elif TimingBudgetInMs == 500:
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_A_HI[1], 0x04, 0x8F])
-				self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__TIMEOUT_MACROP_B_HI[1], 0x04, 0xA4])
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 0x048F, 2)
+				self.__i2cWrite(self.address, RANGE_CONFIG__TIMEOUT_MACROP_B_HI, 0x04A4, 2)
 			else:
 				self.status = 1
 		
@@ -829,7 +754,7 @@ class VL53L1X(object):
 		"""
 		self.status = 0
 
-		Temp = self._i2c.readWord(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI)
+		Temp = self.__i2cRead(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 2)
 
 		def GetTimingBudgetInMs_switch(var):
 			switcher = {
@@ -863,33 +788,19 @@ class VL53L1X(object):
 
 		TB = self.GetTimingBudgetInMs()
 		if DM == 1:
-			# self.status = self._i2c.writeByte(self.address, PHASECAL_CONFIG__TIMEOUT_MACROP, 0x14)
-			# self.status = self._i2c.writeByte(self.address, RANGE_CONFIG__VCSEL_PERIOD_A, 0x07)
-			# self.status = self._i2c.writeByte(self.address, RANGE_CONFIG__VCSEL_PERIOD_B, 0x05)
-			# self.status = self._i2c.writeByte(self.address, RANGE_CONFIG__VALID_PHASE_HIGH, 0x38)
-			# self.status = self._i2c.writeWord(self.address, SD_CONFIG__WOI_SD0, 0x0705)
-			# self.status = self._i2c.writeWord(self.address, SD_CONFIG__INITIAL_PHASE_SD0, 0x0606)
-
-			self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [PHASECAL_CONFIG__TIMEOUT_MACROP[1], 0x14])
-			self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__VCSEL_PERIOD_A[1], 0x07])
-			self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__VCSEL_PERIOD_B[1], 0x05])
-			self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__VALID_PHASE_HIGH[1], 0x38])
-			self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [SD_CONFIG__WOI_SD0[1], 0x07, 0x05])
-			self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [SD_CONFIG__INITIAL_PHASE_SD0[1], 0x06, 0x06])
+			self.status = self.__i2cWrite(self.address, PHASECAL_CONFIG__TIMEOUT_MACROP, 0x14, 1)
+			self.status = self.__i2cWrite(self.address, RANGE_CONFIG__VCSEL_PERIOD_A, 0x07, 1)
+			self.status = self.__i2cWrite(self.address, RANGE_CONFIG__VCSEL_PERIOD_B, 0x05, 1)
+			self.status = self.__i2cWrite(self.address, RANGE_CONFIG__VALID_PHASE_HIGH, 0x38, 1)
+			self.status = self.__i2cWrite(self.address, SD_CONFIG__WOI_SD0, 0x0705, 2)
+			self.status = self.__i2cWrite(self.address, SD_CONFIG__INITIAL_PHASE_SD0, 0x0606, 2)
 		elif DM == 2:
-			# self.status = self._i2c.writeByte(self.address, PHASECAL_CONFIG__TIMEOUT_MACROP, 0x0A)
-			# self.status = self._i2c.writeByte(self.address, RANGE_CONFIG__VCSEL_PERIOD_A, 0x0F)
-			# self.status = self._i2c.writeByte(self.address, RANGE_CONFIG__VCSEL_PERIOD_B, 0x0D)
-			# self.status = self._i2c.writeByte(self.address, RANGE_CONFIG__VALID_PHASE_HIGH, 0xB8)
-			# self.status = self._i2c.writeWord(self.address, SD_CONFIG__WOI_SD0, 0x0F0D)
-			# self.status = self._i2c.writeWord(self.address, SD_CONFIG__INITIAL_PHASE_SD0, 0x0E0E)
-
-			self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [PHASECAL_CONFIG__TIMEOUT_MACROP[1], 0x0A])
-			self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__VCSEL_PERIOD_A[1], 0x0F])
-			self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__VCSEL_PERIOD_B[1], 0x0D])
-			self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__VALID_PHASE_HIGH[1], 0xB8])
-			self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [SD_CONFIG__WOI_SD0[1], 0x0F, 0x0D])
-			self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [SD_CONFIG__INITIAL_PHASE_SD0[1], 0x0E, 0x0E])
+			self.status = self.__i2cWrite(self.address, PHASECAL_CONFIG__TIMEOUT_MACROP, 0x0A, 1)
+			self.status = self.__i2cWrite(self.address, RANGE_CONFIG__VCSEL_PERIOD_A, 0x0F, 1)
+			self.status = self.__i2cWrite(self.address, RANGE_CONFIG__VCSEL_PERIOD_B, 0x0D, 1)
+			self.status = self.__i2cWrite(self.address, RANGE_CONFIG__VALID_PHASE_HIGH, 0xB8, 1)
+			self.status = self.__i2cWrite(self.address, SD_CONFIG__WOI_SD0, 0x0F0D, 2)
+			self.status = self.__i2cWrite(self.address, SD_CONFIG__INITIAL_PHASE_SD0, 0x0E0E, 2)
 		else:
 			if self.debug == 1:
 				print("Invalid DIstance Mode")
@@ -904,10 +815,7 @@ class VL53L1X(object):
 		"""
 		self.status = 0
 
-		# TempDM = self._i2c.readByte(self.address,PHASECAL_CONFIG__TIMEOUT_MACROP)
-		write = self._i2c.i2c_msg.write(self.address, PHASECAL_CONFIG__TIMEOUT_MACROP)
-		TempDM = self._i2c.i2c_rdwr(write,self.readByte)
-
+		TempDM = self.__i2cRead(self.address,PHASECAL_CONFIG__TIMEOUT_MACROP, 1)
 		if (TempDM == 0x14):
 			DM=1
 		if(TempDM == 0x0A):
@@ -923,18 +831,11 @@ class VL53L1X(object):
 		"""
 		self.status = 0
 
-		ClockPLL = self._i2c.readWord(self.address, VL53L1_RESULT__OSC_CALIBRATE_VAL)
+		ClockPLL = self.__i2cRead(self.address, VL53L1_RESULT__OSC_CALIBRATE_VAL, 2)
 		ClockPLL = ClockPLL&0x3FF
 
-		# self.status = self._i2c.writeBlock(self.address, VL53L1_SYSTEM__INTERMEASUREMENT_PERIOD,
-		# 		(ClockPLL * InterMeasMs * 1.075))
-		InterMeasPeriod = (ClockPLL * InterMeasMs * 1.075)
-		split_InterMeasPeriod = [	(InterMeasPeriod >> 24) & 0xFF,
-									(InterMeasPeriod >> 16) & 0xFF,
-									(InterMeasPeriod >>  8) & 0xFF,
-									(InterMeasPeriod >>  0) & 0xFF ]
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [VL53L1_SYSTEM__INTERMEASUREMENT_PERIOD[1],
-				split_InterMeasPeriod[0], split_InterMeasPeriod[1], split_InterMeasPeriod[2], split_InterMeasPeriod[3] ])
+		self.status = self.__i2cWrite(self.address, VL53L1_SYSTEM__INTERMEASUREMENT_PERIOD,
+				(ClockPLL * InterMeasMs * 1.075), 4)
 
 		return self.status
 
@@ -947,8 +848,8 @@ class VL53L1X(object):
 		ClockPLL = 0
 		pIM = 0
 
-		tmp = self._i2c.readBlock(self.address, VL53L1_SYSTEM__INTERMEASUREMENT_PERIOD, 4)
-		ClockPLL = self._i2c.readWord(self.address, VL53L1_RESULT__OSC_CALIBRATE_VAL)
+		tmp = self.__i2cRead(self.address, VL53L1_SYSTEM__INTERMEASUREMENT_PERIOD, 4)
+		ClockPLL = self.__i2cRead(self.address, VL53L1_RESULT__OSC_CALIBRATE_VAL, 2)
 		ClockPLL = ClockPLL&0x3FF
 		pIM= (tmp/(ClockPLL*1.065))
 
@@ -962,7 +863,7 @@ class VL53L1X(object):
 		self.status = 0
 		state = 0
 
-		state = self._i2c.readByte(self.address,VL53L1_FIRMWARE__SYSTEM_STATUS)
+		state = self.__i2cRead(self.address,VL53L1_FIRMWARE__SYSTEM_STATUS, 1)
 
 		return state
 
@@ -974,7 +875,7 @@ class VL53L1X(object):
 		self.status = 0
 		sensorId = 0
 
-		sensorId = self._i2c.readWord(self.address, VL53L1_IDENTIFICATION__MODEL_ID)
+		sensorId = self.__i2cRead(self.address, VL53L1_IDENTIFICATION__MODEL_ID, 2)
 
 		return sensorId
 
@@ -984,8 +885,8 @@ class VL53L1X(object):
 		* @brief This function returns the distance measured by the sensor in mm
 		"""
 		self.status = 0
-		distance = self._i2c.readWord(self.address,
-				VL53L1_RESULT__FINAL_CROSSTALK_CORRECTED_RANGE_MM_SD0)
+		distance = self.__i2cRead(self.address,
+				VL53L1_RESULT__FINAL_CROSSTALK_CORRECTED_RANGE_MM_SD0, 2)
 
 		return distance
 
@@ -998,10 +899,10 @@ class VL53L1X(object):
 		self.status = 0
 		SpNb=1
 
-		signal = self._i2c.readWord(self.address,
-			VL53L1_RESULT__PEAK_SIGNAL_COUNT_RATE_CROSSTALK_CORRECTED_MCPS_SD0)
-		SpNb = self._i2c.readWord(self.address,
-			VL53L1_RESULT__DSS_ACTUAL_EFFECTIVE_SPADS_SD0)
+		signal = self.__i2cRead(self.address,
+			VL53L1_RESULT__PEAK_SIGNAL_COUNT_RATE_CROSSTALK_CORRECTED_MCPS_SD0, 2)
+		SpNb = self.__i2cRead(self.address,
+			VL53L1_RESULT__DSS_ACTUAL_EFFECTIVE_SPADS_SD0, 2)
 		signalRate = (2000.0*signal/SpNb)
 
 		return signalRate
@@ -1014,8 +915,8 @@ class VL53L1X(object):
 		self.status = 0
 		SpNb=1
 
-		AmbientRate = self._i2c.readWord(self.address, RESULT__AMBIENT_COUNT_RATE_MCPS_SD,)
-		SpNb = self._i2c.readWord(self.address, VL53L1_RESULT__DSS_ACTUAL_EFFECTIVE_SPADS_SD0)
+		AmbientRate = self.__i2cRead(self.address, RESULT__AMBIENT_COUNT_RATE_MCPS_SD, 2)
+		SpNb = self.__i2cRead(self.address, VL53L1_RESULT__DSS_ACTUAL_EFFECTIVE_SPADS_SD0, 2)
 		ambPerSp=(2000.0 * AmbientRate / SpNb)
 		
 		return ambPerSp
@@ -1026,8 +927,8 @@ class VL53L1X(object):
 		* @brief This function returns the returned signal in kcps.
 		"""
 		self.status = 0
-		tmp = self._i2c.readWord(self.address,
-			VL53L1_RESULT__PEAK_SIGNAL_COUNT_RATE_CROSSTALK_CORRECTED_MCPS_SD0)
+		tmp = self.__i2cRead(self.address,
+			VL53L1_RESULT__PEAK_SIGNAL_COUNT_RATE_CROSSTALK_CORRECTED_MCPS_SD0, 2)
 		signal = tmp*8
 		
 		return signal
@@ -1038,8 +939,8 @@ class VL53L1X(object):
 		* @brief This function returns the current number of enabled SPADs
 		"""
 		self.status = 0
-		tmp = self._i2c.readWord(self.address,
-					VL53L1_RESULT__DSS_ACTUAL_EFFECTIVE_SPADS_SD0)
+		tmp = self.__i2cRead(self.address,
+					VL53L1_RESULT__DSS_ACTUAL_EFFECTIVE_SPADS_SD0, 2)
 		spNb = tmp >> 8
 		
 		return spNb
@@ -1050,7 +951,7 @@ class VL53L1X(object):
 		* @brief This function returns the ambient rate in kcps
 		"""
 		self.status = 0
-		tmp = self._i2c.readWord(self.address, RESULT__AMBIENT_COUNT_RATE_MCPS_SD)
+		tmp = self.__i2cRead(self.address, RESULT__AMBIENT_COUNT_RATE_MCPS_SD, 2)
 		ambRate = tmp*8
 		
 		return ambRate
@@ -1062,7 +963,7 @@ class VL53L1X(object):
 		* (0:no error, 1:sigma failed, 2:signal failed, ..., 7:wrap-around)
 		"""
 		self.status = 0
-		RgSt = self._i2c.readByte(self.address, VL53L1_RESULT__RANGE_STATUS)
+		RgSt = self.__i2cRead(self.address, VL53L1_RESULT__RANGE_STATUS, 1)
 		RgSt = RgSt&0x1F
 
 		def GetRangeStatus_switch(var):
@@ -1093,18 +994,12 @@ class VL53L1X(object):
 		* @param OffsetValue:the offset correction value to program in mm
 		"""
 		self.status = 0
+		Temp = OffsetValue*4
 
-		# Temp = (OffsetValue*4)
-		split_Temp = [(OffsetValue*4) >> 8, (OffsetValue*4) & 0xFF]
-
-		# self._i2c.writeWord(self.address, ALGO__PART_TO_PART_RANGE_OFFSET_MM,
-		# 		Temp)
-		# self._i2c.writeWord(self.address, MM_CONFIG__INNER_OFFSET_MM, 0x0)
-		# self._i2c.writeWord(self.address, MM_CONFIG__OUTER_OFFSET_MM, 0x0)
-		self._i2c.write_i2c_block_data(self.address, 0x00, [ALGO__PART_TO_PART_RANGE_OFFSET_MM[1],
-				split_Temp[0], split_Temp[1] ])
-		self._i2c.write_i2c_block_data(self.address, 0x00, [MM_CONFIG__INNER_OFFSET_MM[1], 0x00, 0x00])
-		self._i2c.write_i2c_block_data(self.address, 0x00, [MM_CONFIG__OUTER_OFFSET_MM[1], 0x00, 0x00])
+		self.__i2cWrite(self.address, ALGO__PART_TO_PART_RANGE_OFFSET_MM,
+				Temp, 2)
+		self.__i2cWrite(self.address, MM_CONFIG__INNER_OFFSET_MM, 0x0, 2)
+		self.__i2cWrite(self.address, MM_CONFIG__OUTER_OFFSET_MM, 0x0, 2)
 
 		return self.status
 
@@ -1114,7 +1009,7 @@ class VL53L1X(object):
 		* @brief This function returns the programmed offset correction value in mm
 		"""
 		self.status = 0
-		Temp = self._i2c.readWord(self.address,ALGO__PART_TO_PART_RANGE_OFFSET_MM)
+		Temp = self.__i2cRead(self.address,ALGO__PART_TO_PART_RANGE_OFFSET_MM, 2)
 		Temp = Temp << 3
 		Temp = Temp >> 5
 		offset = Temp
@@ -1126,26 +1021,18 @@ class VL53L1X(object):
 		"""
 		* @brief This function programs the xtalk correction value in cps (Count Per Second).\n
 		* This is the number of photons reflected back from the cover glass in cps.
+
+		XTalkValue in count per second to avoid float type
 		"""
 		self.status = 0
-
-		# XTalkValue in count per second to avoid float type
-		split_word = [(XtalkValue << 9)/1000 >> 8, (XtalkValue << 9)/1000 & 0xFF]  # * << 9 (7.9 format) and /1000 to convert cps to kpcs
-
-		# self.status = self._i2c.writeWord(self.address,
-		# 		ALGO__CROSSTALK_COMPENSATION_X_PLANE_GRADIENT_KCPS,
-		# 		0x0000)
-		# self.status = self._i2c.writeWord(self.address, ALGO__CROSSTALK_COMPENSATION_Y_PLANE_GRADIENT_KCPS,
-		# 		0x0000)
-		# self.status = self._i2c.writeWord(self.address, ALGO__CROSSTALK_COMPENSATION_PLANE_OFFSET_KCPS,
-		# 		(XtalkValue << 9)/1000]) # * << 9 (7.9 format) and /1000 to convert cps to kpcs
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [ALGO__CROSSTALK_COMPENSATION_X_PLANE_GRADIENT_KCPS[1],
-				0x00, 0x00])
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [ALGO__CROSSTALK_COMPENSATION_Y_PLANE_GRADIENT_KCPS[1],
-				0x00, 0x00])
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [ALGO__CROSSTALK_COMPENSATION_PLANE_OFFSET_KCPS[1],
-				split_word[0], split_word[1] ]) # * << 9 (7.9 format) and /1000 to convert cps to kpcs
-
+		
+		self.status = self.__i2cWrite(self.address,
+				ALGO__CROSSTALK_COMPENSATION_X_PLANE_GRADIENT_KCPS,
+				0x0000, 2)
+		self.status = self.__i2cWrite(self.address, ALGO__CROSSTALK_COMPENSATION_Y_PLANE_GRADIENT_KCPS,
+				0x0000, 2)
+		self.status = self.__i2cWrite(self.address, ALGO__CROSSTALK_COMPENSATION_PLANE_OFFSET_KCPS,
+				(XtalkValue << 9)/1000, 2) # * << 9 (7.9 format) and /1000 to convert cps to kpcs
 		
 		return self.status
 
@@ -1155,7 +1042,7 @@ class VL53L1X(object):
 		* @brief This function returns the current programmed xtalk correction value in cps
 		"""
 		self.status = 0
-		tmp = self._i2c.readWord(self.address,ALGO__CROSSTALK_COMPENSATION_PLANE_OFFSET_KCPS)
+		tmp = self.__i2cRead(self.address,ALGO__CROSSTALK_COMPENSATION_PLANE_OFFSET_KCPS, 2)
 		xtalk = (tmp*1000) >> 9 # * 1000 to convert kcps to cps and >> 9 (7.9 format)
 
 		return xtalk
@@ -1181,27 +1068,17 @@ class VL53L1X(object):
 		self.status = 0
 		Temp = 0
 
-		Temp = self._i2c.readByte(self.address, SYSTEM__INTERRUPT_CONFIG_GPIO)
+		Temp = self.__i2cRead(self.address, SYSTEM__INTERRUPT_CONFIG_GPIO, 1)
 		Temp = Temp & 0x47
 		if (IntOnNoTarget == 0):
-			# self.status = self._i2c.writeByte(self.address, SYSTEM__INTERRUPT_CONFIG_GPIO,
-			# 		(Temp | (Window & 0x07)))
-			self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [SYSTEM__INTERRUPT_CONFIG_GPIO[1],
-					(Temp | (Window & 0x07)) ])
+			self.status = self.__i2cWrite(self.address, SYSTEM__INTERRUPT_CONFIG_GPIO,
+					(Temp | (Window & 0x07)), 1)
 		else:
-			# self.status = self._i2c.writeByte(self.address, SYSTEM__INTERRUPT_CONFIG_GPIO,
-			# 		((Temp | (Window & 0x07)) | 0x40))
-			self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [SYSTEM__INTERRUPT_CONFIG_GPIO[1],
-					((Temp | (Window & 0x07)) | 0x40) ])
+			self.status = self.__i2cWrite(self.address, SYSTEM__INTERRUPT_CONFIG_GPIO,
+					((Temp | (Window & 0x07)) | 0x40), 1)
 		
-		# self.status = self._i2c.writeWord(self.address, SYSTEM__THRESH_HIGH, ThreshHigh)
-		# self.status = self._i2c.writeWord(self.address, SYSTEM__THRESH_LOW, ThreshLow)
-		split_ThreshHigh = [ThreshHigh >> 8, ThreshHigh & 0xFF]
-		split_ThreshLow =	 [ThreshLow  >> 8, ThreshLow  & 0xFF]
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [SYSTEM__THRESH_HIGH[1],
-				split_ThreshHigh[0], split_ThreshHigh[1] ])
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [SYSTEM__THRESH_LOW[1],
-				split_ThreshLow[0], split_ThreshLow[1] ])
+		self.status = self.__i2cWrite(self.address, SYSTEM__THRESH_HIGH, ThreshHigh, 2)
+		self.status = self.__i2cWrite(self.address, SYSTEM__THRESH_LOW, ThreshLow, 2)
 		
 		return self.status
 
@@ -1211,7 +1088,7 @@ class VL53L1X(object):
 		* @brief This function returns the window detection mode (0=below 1=above 2=out 3=in)
 		"""
 		self.status = 0
-		tmp = self._i2c.readByte(self.address,SYSTEM__INTERRUPT_CONFIG_GPIO)
+		tmp = self.__i2cRead(self.address,SYSTEM__INTERRUPT_CONFIG_GPIO, 1)
 		window = (tmp & 0x7)
 		
 		return window
@@ -1222,7 +1099,7 @@ class VL53L1X(object):
 		* @brief This function returns the low threshold in mm
 		"""
 		self.status = 0
-		low = self._i2c.readWord(self.address,SYSTEM__THRESH_LOW)
+		low = self.__i2cRead(self.address,SYSTEM__THRESH_LOW, 2)
 		
 		return low
 
@@ -1232,7 +1109,7 @@ class VL53L1X(object):
 		* @brief This function returns the high threshold in mm
 		"""
 		self.status = 0
-		high = self._i2c.readWord(self.address,SYSTEM__THRESH_HIGH)
+		high = self.__i2cRead(self.address,SYSTEM__THRESH_HIGH, 2)
 		
 		return high
 
@@ -1245,7 +1122,7 @@ class VL53L1X(object):
 		* @param X:ROI Width Y=ROI Height
 		"""
 		self.status = 0
-		OpticalCenter =self._i2c.readByte(self.address, VL53L1_ROI_CONFIG__MODE_ROI_CENTRE_SPAD)
+		OpticalCenter =self.__i2cRead(self.address, VL53L1_ROI_CONFIG__MODE_ROI_CENTRE_SPAD, 1)
 		if (X > 16):
 			X = 16
 		if (Y > 16):
@@ -1253,12 +1130,9 @@ class VL53L1X(object):
 		if (X > 10 or Y > 10):
 			OpticalCenter = 199
 
-		# self.status = self._i2c.writeByte(self.address, ROI_CONFIG__USER_ROI_CENTRE_SPAD, OpticalCenter)
-		# self.status = self._i2c.writeByte(self.address, ROI_CONFIG__USER_ROI_REQUESTED_GLOBAL_XY_SIZE,
-		# 		(Y - 1) << 4 | (X - 1))
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [ROI_CONFIG__USER_ROI_CENTRE_SPAD[1], OpticalCenter])
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [ROI_CONFIG__USER_ROI_REQUESTED_GLOBAL_XY_SIZE[1],
-				(Y - 1) << 4 | (X - 1) ])
+		self.status = self.__i2cWrite(self.address, ROI_CONFIG__USER_ROI_CENTRE_SPAD, OpticalCenter, 1)
+		self.status = self.__i2cWrite(self.address, ROI_CONFIG__USER_ROI_REQUESTED_GLOBAL_XY_SIZE,
+				(Y - 1) << 4 | (X - 1), 1)
 		
 		return self.status
 
@@ -1268,7 +1142,7 @@ class VL53L1X(object):
 		*@brief This function returns width X and height Y
 		"""
 		self.status = 0
-		tmp = self._i2c.readByte(self.address,ROI_CONFIG__USER_ROI_REQUESTED_GLOBAL_XY_SIZE)
+		tmp = self.__i2cRead(self.address,ROI_CONFIG__USER_ROI_REQUESTED_GLOBAL_XY_SIZE, 1)
 		ROI_X = (tmp & 0x0F) + 1
 		ROI_Y = ((tmp & 0xF0) >> 4) + 1
 
@@ -1281,10 +1155,7 @@ class VL53L1X(object):
 		"""
 		self.status = 0
 
-		# self._i2c.writeWord(self.address,RANGE_CONFIG__MIN_COUNT_RATE_RTN_LIMIT_MCPS,Signal >> 3)
-		Signal = Signal >> 3
-		split_Signal = [Signal >> 8, Signal & 0xFF]
-		self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__MIN_COUNT_RATE_RTN_LIMIT_MCPS[1], split_Signal[0], split_Signal[1] ])
+		self.__i2cWrite(self.address,RANGE_CONFIG__MIN_COUNT_RATE_RTN_LIMIT_MCPS,Signal >> 3, 2)
 		
 		return self.status
 
@@ -1294,8 +1165,8 @@ class VL53L1X(object):
 		* @brief This function returns the current signal threshold in kcps
 		"""
 		self.status = 0
-		tmp = self._i2c.readWord(self.address,
-					RANGE_CONFIG__MIN_COUNT_RATE_RTN_LIMIT_MCPS)
+		tmp = self.__i2cRead(self.address,
+					RANGE_CONFIG__MIN_COUNT_RATE_RTN_LIMIT_MCPS, 2)
 		signal = tmp << 3
 		return signal
 
@@ -1310,11 +1181,7 @@ class VL53L1X(object):
 			return 1
 		
 		# 16 bits register 14.2 format
-
-		# self.status = self._i2c.writeWord(self.address,RANGE_CONFIG__SIGMA_THRESH,Sigma << 2)
-		Sigma = Sigma << 2
-		split_Sigma = [Sigma >> 8, Sigma & 0xFF]
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [RANGE_CONFIG__SIGMA_THRESH[1], split_Sigma[0], split_Sigma[1] ])
+		self.status = self.__i2cWrite(self.address,RANGE_CONFIG__SIGMA_THRESH,Sigma << 2, 2)
 
 		return self.status
 
@@ -1325,7 +1192,7 @@ class VL53L1X(object):
 		"""
 		self.status = 0
 		
-		tmp = self._i2c.readWord(self.address,RANGE_CONFIG__SIGMA_THRESH)
+		tmp = self.__i2cRead(self.address,RANGE_CONFIG__SIGMA_THRESH, 2)
 		sigma = tmp >> 2
 
 		return sigma
@@ -1340,11 +1207,8 @@ class VL53L1X(object):
 		self.status = 0
 		tmp=0
 
-		# self.status = self._i2c.writeByte(self.address,VL53L1_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND,0x81) #  full VHV
-		# self.status = self._i2c.writeByte(self.address,0x0B,0x92)
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [VL53L1_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND[1], 0x81]) # full VHV
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [0x0B, 0x92])
-
+		self.status = self.__i2cWrite(self.address,VL53L1_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND,0x81, 1) #  full VHV
+		self.status = self.__i2cWrite(self.address,0x0B,0x92, 1)
 		self.status = self.StartRanging()
 		while(tmp==0):
 			tmp = self.CheckForDataReady()
@@ -1352,11 +1216,8 @@ class VL53L1X(object):
 		tmp = 0
 		self.status = self.ClearInterrupt()
 		self.status = self.StopRanging()
-
-		# self.status = self._i2c.writeByte(self.address, VL53L1_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND, 0x09) #  two bounds VHV
-		# self.status = self._i2c.writeByte(self.address, 0x0B, 0) #  start VHV from the previous temperature
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [VL53L1_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND[1], 0x09]) # two bounds VHV
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [0x0B, 0]) # start VHV from the previous temperature
+		self.status = self.__i2cWrite(self.address, VL53L1_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND, 0x09, 1) #  two bounds VHV
+		self.status = self.__i2cWrite(self.address, 0x0B, 0, 1) #  start VHV from the previous temperature
 
 		return self.status
 
@@ -1379,12 +1240,9 @@ class VL53L1X(object):
 		AverageDistance = 0
 		self.status = 0
 
-		# self.status = self._i2c.writeWord(self.address, ALGO__PART_TO_PART_RANGE_OFFSET_MM, 0x0)
-		# self.status = self._i2c.writeWord(self.address, MM_CONFIG__INNER_OFFSET_MM, 0x0)
-		# self.status = self._i2c.writeWord(self.address, MM_CONFIG__OUTER_OFFSET_MM, 0x0)
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [ALGO__PART_TO_PART_RANGE_OFFSET_MM[1], 0x00, 0x00])
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [MM_CONFIG__INNER_OFFSET_MM[1], 0x00, 0x00])
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [MM_CONFIG__OUTER_OFFSET_MM[1], 0x00, 0x00])
+		self.status = self.__i2cWrite(self.address, ALGO__PART_TO_PART_RANGE_OFFSET_MM, 0x0, 2)
+		self.status = self.__i2cWrite(self.address, MM_CONFIG__INNER_OFFSET_MM, 0x0, 2)
+		self.status = self.__i2cWrite(self.address, MM_CONFIG__OUTER_OFFSET_MM, 0x0, 2)
 		self.status = self.StartRanging()	# Enable VL53L1X sensor
 		for i in range(0, 50):
 			while (tmp == 0):
@@ -1398,11 +1256,7 @@ class VL53L1X(object):
 		self.status = self.StopRanging()
 		AverageDistance = AverageDistance / 50
 		offset = TargetDistInMm - AverageDistance
-
-		# self.status = self._i2c.writeWord(self.address, ALGO__PART_TO_PART_RANGE_OFFSET_MM, offset*4)
-		offset = offset*4
-		split_offset = [offset >> 8, offset & 0xFF]
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [ALGO__PART_TO_PART_RANGE_OFFSET_MM[1], split_offset[0], split_offset[1] ])
+		self.status = self.__i2cWrite(self.address, ALGO__PART_TO_PART_RANGE_OFFSET_MM, offset*4, 2)
 
 		return self.status #,offset???
 
@@ -1426,9 +1280,7 @@ class VL53L1X(object):
 		distance = 0
 		self.status = 0
 
-		# self.status = self._i2c.writeWord(self.address, 0x0016,0)
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [0x16, 0x00, 0x00])
-
+		self.status = self.__i2cWrite(self.address, 0x0016,0, 2)
 		self.status = self.StartRanging()
 		for i in range(0, 50):
 			while (tmp == 0):
@@ -1449,10 +1301,7 @@ class VL53L1X(object):
 		AverageSignalRate = AverageSignalRate / 50
 		# Calculate Xtalk value
 		xtalk = (512*(AverageSignalRate*(1-(AverageDistance/TargetDistInMm)))/AverageSpadNb)
-
-		# self.status = self._i2c.writeWord(self.address, 0x0016, xtalk)
-		split_xtalk = [xtalk >> 8, xtalk & 0xFF]
-		self.status = self._i2c.write_i2c_block_data(self.address, 0x00, [0x16, split_xtalk[0], split_xtalk[1] ])
+		self.status = self.__i2cWrite(self.address, 0x0016, xtalk, 2)
 		
 		return self.status #,xtalk???
 
@@ -1461,12 +1310,6 @@ class VL53L1X(object):
 ###############################################################################
 
 # protected:
-
-
-# Write and read functions from I2C
-###############################################################################
-###############################################################################
-
 
 	def __GetTickCount(self):
 		"""
@@ -1524,7 +1367,7 @@ class VL53L1X(object):
 			(found == 0)):
 
 			if (self.status == VL53L1_ERROR_NONE):
-				byte_value = self._i2c.readByte(self.address, index)
+				byte_value = self.__i2cRead(self.address, index, 1)
 
 			if ((byte_value & mask) == value):
 				found = 1
@@ -1542,7 +1385,11 @@ class VL53L1X(object):
 			self.status = VL53L1_ERROR_TIME_OUT
 
 		return self.status
-	
+
+
+# Write and read functions for I2C
+###############################################################################
+###############################################################################
 
 	def __i2cWrite(self, address, register, data, nbytes):
 		"""
