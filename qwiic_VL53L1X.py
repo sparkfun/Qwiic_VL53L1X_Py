@@ -688,14 +688,14 @@ class VL53L1X(object):
 		return isDataReady
 
 
-	def SetTimingBudgetInMs(self, TimingBudgetInMs, DM):
+	def SetTimingBudgetInMs(self, TimingBudgetInMs):
 		"""
 		* @brief This function programs the timing budget in ms.
 		* Predefined values = 15, 20, 33, 50, 100(default), 200, 500.
 		"""
 		self.status = 0
 
-		# DM = self.GetDistanceMode()
+		DM = self.GetDistanceMode()
 		if (DM == 0):
 			return 1
 		elif (DM == 1):	# Short DistanceMode
@@ -805,7 +805,7 @@ class VL53L1X(object):
 			if self.debug == 1:
 				print("Invalid DIstance Mode")
 
-		self.status = self.SetTimingBudgetInMs(TB, DM)
+		self.status = self.SetTimingBudgetInMs(TB)
 		return self.status
 
 
