@@ -1542,3 +1542,78 @@ class VL53L1X(object):
 			self.status = VL53L1_ERROR_TIME_OUT
 
 		return self.status
+	
+
+	def __i2cWrite(self, register, data, nbytes):
+		"""
+		A wrapper for the I2C driver since device needs 16-bit register addresses. Formats register and data values so that they can be written to device as a block for proper I2C transactions.
+
+		:param	register:	16-bit register address
+							(can be 8-bit, just writes 0x00 byte prior to value)
+		:param	data:		Data to be set in register
+							(should be 4, 2, or 1 bytes in length)
+		:param	nbytes:		number of bytes in data (*to be set*)
+							(needs to be specified as python passes in integer value, but device expects a specific nuber of bytes for that value)
+		
+		:return:	status- (*self*) Indicator for I2C transaction success???
+		:rtype:		Boolean
+		"""
+		
+		registerMSB = register >> 8
+		registerLSB = register & 0xFF
+
+		buffer = [registerLSB]
+
+		if nbytes == 4:
+			buffer.append( (data >> 24) & 0xFF )
+			buffer.append( (data >> 16) & 0xFF )
+			buffer.append( (data >>  8) & 0xFF )
+			buffer.append( (data >>  0) & 0xFF )
+		elif nbytes == 2:
+			buffer.append( (data >>  8) & 0xFF )
+			buffer.append( (data >>  0) & 0xFF )
+		elif nbytes == 1:
+			buffer.append( data )
+		else:
+			if self.debug == 1:
+				print("in __i2cWriteBlock, nbytes entered invalid")
+			
+			return
+		
+		self.status = self._i2c.write_i2c_block_data(self.address, registerMSB, buffer)
+
+		return self.status
+	
+
+	def __i2cRead(self, register, nbytes):
+		"""
+		A wrapper for the I2C driver since device needs 16-bit register addresses. Formats register and data values so that they can be written to device as a block for proper I2C transactions.
+
+		:param	register:	16-bit register address
+							(can be 8-bit, just writes 0x00 byte prior to value)
+		:param	nbytes:		number of bytes in data (*to be read*)
+							(needs to be specified for transaction)
+		
+		:return:	data
+		:rtype:		integer
+		"""
+		
+		data = 0
+		registerMSB = register >> 8
+		registerLSB = register & 0xFF
+
+		if nbytes not in [1, 2, 4]:
+			if self.debug == 1:
+				print("in __i2cWriteBlock, nbytes entered invalid")
+			return
+
+		# Setup for read on smbus 2
+		read = self._i2c.i2c_msg.read(self.address, nbytes)
+		write = self._i2c.i2c_msg.write(self.address, [registerMSB, registerLSB])
+
+		buffer = self._i2c.i2c_rdwr(write, read)
+
+		for i in range(0, nbytes + 1):
+			data = ( buffer[ (nbytes - 1) - i ] << (i*8) ) + data
+
+		return data
