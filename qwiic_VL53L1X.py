@@ -1544,7 +1544,7 @@ class VL53L1X(object):
 		return self.status
 	
 
-	def __i2cWrite(self, register, data, nbytes):
+	def __i2cWrite(self, address, register, data, nbytes):
 		"""
 		A wrapper for the I2C driver since device needs 16-bit register addresses. Formats register and data values so that they can be written to device as a block for proper I2C transactions.
 
@@ -1580,12 +1580,12 @@ class VL53L1X(object):
 			
 			return
 		
-		self.status = self._i2c.write_i2c_block_data(self.address, registerMSB, buffer)
+		self.status = self._i2c.write_i2c_block_data(address, registerMSB, buffer)
 
 		return self.status
 	
 
-	def __i2cRead(self, register, nbytes):
+	def __i2cRead(self, address, register, nbytes):
 		"""
 		A wrapper for the I2C driver since device needs 16-bit register addresses. Formats register and data values so that they can be written to device as a block for proper I2C transactions.
 
@@ -1608,8 +1608,8 @@ class VL53L1X(object):
 			return
 
 		# Setup for read on smbus 2
-		read = self._i2c.i2c_msg.read(self.address, nbytes)
-		write = self._i2c.i2c_msg.write(self.address, [registerMSB, registerLSB])
+		read = self._i2c.i2c_msg.read(address, nbytes)
+		write = self._i2c.i2c_msg.write(address, [registerMSB, registerLSB])
 
 		buffer = self._i2c.i2c_rdwr(write, read)
 
