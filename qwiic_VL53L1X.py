@@ -1607,7 +1607,9 @@ class VL53L1X(object):
 				print("in __i2cWriteBlock, nbytes entered invalid")
 			return
 
+		# Setup for read/write transactions on smbus 2
 		write = self._i2c.i2c_msg.write(address, [registerMSB, registerLSB])	# Write part of transaction
+		read = self._i2c.i2c_msg.read(address, nbytes)							# Read part of transaction
 
 		buffer = self._i2c.i2c_rdwr(write, read)
 
