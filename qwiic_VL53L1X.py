@@ -1,10 +1,10 @@
 """
 ********************************************************************************
-* @file    vl53l0x_class.cpp
-* @author  IMG
-* @version V0.0.1
-* @date    14-December-2018
-* @brief   Implementation file for the VL53L1X driver class
+* @file		vl53l0x_class.cpp
+* @author	IMG
+* @version	V0.0.1
+* @date		14-December-2018
+* @brief	Implementation file for the VL53L1X driver class
 ********************************************************************************
 * @attention
 * <h2><center>&copy; COPYRIGHT(c) 2018 STMicroelectronics International N.V. All rights reserved.</center></h2>
@@ -79,7 +79,7 @@ import qwiic_i2c		# I2C bus driver package
 
 # if _MSC_VER != None:
 # 	if VL53L1X_API_EXPORTS != None:
-# 		VL53L1X_API  = __declspec(dllexport)
+# 		VL53L1X_API = __declspec(dllexport)
 # 	else:
 # 		VL53L1X_API
 # else:
@@ -143,97 +143,97 @@ MM_CONFIG__OUTER_OFFSET_MM = 											0x0022
 # DEBUG_MODE
 
 VL51L1X_DEFAULT_CONFIGURATION = [
-0x00,	#  0x2d : set bit 2 and 5 to 1 for fast plus mode (1MHz I2C), else don't touch
-0x00,	#  0x2e : bit 0 if I2C pulled up at 1.8V, else set bit 0 to 1 (pull up at AVDD)
-0x00,	#  0x2f : bit 0 if GPIO pulled up at 1.8V, else set bit 0 to 1 (pull up at AVDD)
-0x01,	#  0x30 : set bit 4 to 0 for active high interrupt and 1 for active low (bits 3:0 must be 0x1), use SetInterruptPolarity()
-0x02,	#  0x31 : bit 1 = interrupt depending on the polarity, use CheckForDataReady()
-0x00,	#  0x32 : not user-modifiable
-0x02,	#  0x33 : not user-modifiable
-0x08,	#  0x34 : not user-modifiable
-0x00,	#  0x35 : not user-modifiable
-0x08,	#  0x36 : not user-modifiable
-0x10,	#  0x37 : not user-modifiable
-0x01,	#  0x38 : not user-modifiable
-0x01,	#  0x39 : not user-modifiable
-0x00,	#  0x3a : not user-modifiable
-0x00,	#  0x3b : not user-modifiable
-0x00,	#  0x3c : not user-modifiable
-0x00,	#  0x3d : not user-modifiable
-0xff,	#  0x3e : not user-modifiable
-0x00,	#  0x3f : not user-modifiable
-0x0F,	#  0x40 : not user-modifiable
-0x00,	#  0x41 : not user-modifiable
-0x00,	#  0x42 : not user-modifiable
-0x00,	#  0x43 : not user-modifiable
-0x00,	#  0x44 : not user-modifiable
-0x00,	#  0x45 : not user-modifiable
-0x20,	#  0x46 : interrupt configuration 0->level low detection, 1-> level high, 2-> Out of window, 3->In window, 0x20-> New sample ready , TBC
-0x0b,	#  0x47 : not user-modifiable
-0x00,	#  0x48 : not user-modifiable
-0x00,	#  0x49 : not user-modifiable
-0x02,	#  0x4a : not user-modifiable
-0x0a,	#  0x4b : not user-modifiable
-0x21,	#  0x4c : not user-modifiable
-0x00,	#  0x4d : not user-modifiable
-0x00,	#  0x4e : not user-modifiable
-0x05,	#  0x4f : not user-modifiable
-0x00,	#  0x50 : not user-modifiable
-0x00,	#  0x51 : not user-modifiable
-0x00,	#  0x52 : not user-modifiable
-0x00,	#  0x53 : not user-modifiable
-0xc8,	#  0x54 : not user-modifiable
-0x00,	#  0x55 : not user-modifiable
-0x00,	#  0x56 : not user-modifiable
-0x38,	#  0x57 : not user-modifiable
-0xff,	#  0x58 : not user-modifiable
-0x01,	#  0x59 : not user-modifiable
-0x00,	#  0x5a : not user-modifiable
-0x08,	#  0x5b : not user-modifiable
-0x00,	#  0x5c : not user-modifiable
-0x00,	#  0x5d : not user-modifiable
-0x01,	#  0x5e : not user-modifiable
-0xdb,	#  0x5f : not user-modifiable
-0x0f,	#  0x60 : not user-modifiable
-0x01,	#  0x61 : not user-modifiable
-0xf1,	#  0x62 : not user-modifiable
-0x0d,	#  0x63 : not user-modifiable
-0x01,	#  0x64 : Sigma threshold MSB (mm in 14.2 format for MSB+LSB), use SetSigmaThreshold(), default value 90 mm 
-0x68,	#  0x65 : Sigma threshold LSB
-0x00,	#  0x66 : Min count Rate MSB (MCPS in 9.7 format for MSB+LSB), use SetSignalThreshold()
-0x80,	#  0x67 : Min count Rate LSB
-0x08,	#  0x68 : not user-modifiable
-0xb8,	#  0x69 : not user-modifiable
-0x00,	#  0x6a : not user-modifiable
-0x00,	#  0x6b : not user-modifiable
-0x00,	#  0x6c : Intermeasurement period MSB, 32 bits register, use SetIntermeasurementInMs()
-0x00,	#  0x6d : Intermeasurement period
-0x0f,	#  0x6e : Intermeasurement period
-0x89,	#  0x6f : Intermeasurement period LSB
-0x00,	#  0x70 : not user-modifiable
-0x00,	#  0x71 : not user-modifiable
-0x00,	#  0x72 : distance threshold high MSB (in mm, MSB+LSB), use SetD:tanceThreshold()
-0x00,	#  0x73 : distance threshold high LSB
-0x00,	#  0x74 : distance threshold low MSB ( in mm, MSB+LSB), use SetD:tanceThreshold()
-0x00,	#  0x75 : distance threshold low LSB
-0x00,	#  0x76 : not user-modifiable
-0x01,	#  0x77 : not user-modifiable
-0x0f,	#  0x78 : not user-modifiable
-0x0d,	#  0x79 : not user-modifiable
-0x0e,	#  0x7a : not user-modifiable
-0x0e,	#  0x7b : not user-modifiable
-0x00,	#  0x7c : not user-modifiable
-0x00,	#  0x7d : not user-modifiable
-0x02,	#  0x7e : not user-modifiable
-0xc7,	#  0x7f : ROI center, use SetROI()
-0xff,	#  0x80 : XY ROI (X=Width, Y=Height), use SetROI()
-0x9B,	#  0x81 : not user-modifiable
-0x00,	#  0x82 : not user-modifiable
-0x00,	#  0x83 : not user-modifiable
-0x00,	#  0x84 : not user-modifiable
-0x01,	#  0x85 : not user-modifiable
-0x00,	#  0x86 : clear interrupt, use ClearInterrupt()
-0x00	#  0x87 : start ranging, use StartRanging() or StopRanging(), If you want an automatic start after self.init() call, put 0x40 in location 0x87
+0x00,	# 0x2d : set bit 2 and 5 to 1 for fast plus mode (1MHz I2C), else don't touch
+0x00,	# 0x2e : bit 0 if I2C pulled up at 1.8V, else set bit 0 to 1 (pull up at AVDD)
+0x00,	# 0x2f : bit 0 if GPIO pulled up at 1.8V, else set bit 0 to 1 (pull up at AVDD)
+0x01,	# 0x30 : set bit 4 to 0 for active high interrupt and 1 for active low (bits 3:0 must be 0x1), use SetInterruptPolarity()
+0x02,	# 0x31 : bit 1 = interrupt depending on the polarity, use CheckForDataReady()
+0x00,	# 0x32 : not user-modifiable
+0x02,	# 0x33 : not user-modifiable
+0x08,	# 0x34 : not user-modifiable
+0x00,	# 0x35 : not user-modifiable
+0x08,	# 0x36 : not user-modifiable
+0x10,	# 0x37 : not user-modifiable
+0x01,	# 0x38 : not user-modifiable
+0x01,	# 0x39 : not user-modifiable
+0x00,	# 0x3a : not user-modifiable
+0x00,	# 0x3b : not user-modifiable
+0x00,	# 0x3c : not user-modifiable
+0x00,	# 0x3d : not user-modifiable
+0xff,	# 0x3e : not user-modifiable
+0x00,	# 0x3f : not user-modifiable
+0x0F,	# 0x40 : not user-modifiable
+0x00,	# 0x41 : not user-modifiable
+0x00,	# 0x42 : not user-modifiable
+0x00,	# 0x43 : not user-modifiable
+0x00,	# 0x44 : not user-modifiable
+0x00,	# 0x45 : not user-modifiable
+0x20,	# 0x46 : interrupt configuration 0->level low detection, 1-> level high, 2-> Out of window, 3->In window, 0x20-> New sample ready , TBC
+0x0b,	# 0x47 : not user-modifiable
+0x00,	# 0x48 : not user-modifiable
+0x00,	# 0x49 : not user-modifiable
+0x02,	# 0x4a : not user-modifiable
+0x0a,	# 0x4b : not user-modifiable
+0x21,	# 0x4c : not user-modifiable
+0x00,	# 0x4d : not user-modifiable
+0x00,	# 0x4e : not user-modifiable
+0x05,	# 0x4f : not user-modifiable
+0x00,	# 0x50 : not user-modifiable
+0x00,	# 0x51 : not user-modifiable
+0x00,	# 0x52 : not user-modifiable
+0x00,	# 0x53 : not user-modifiable
+0xc8,	# 0x54 : not user-modifiable
+0x00,	# 0x55 : not user-modifiable
+0x00,	# 0x56 : not user-modifiable
+0x38,	# 0x57 : not user-modifiable
+0xff,	# 0x58 : not user-modifiable
+0x01,	# 0x59 : not user-modifiable
+0x00,	# 0x5a : not user-modifiable
+0x08,	# 0x5b : not user-modifiable
+0x00,	# 0x5c : not user-modifiable
+0x00,	# 0x5d : not user-modifiable
+0x01,	# 0x5e : not user-modifiable
+0xdb,	# 0x5f : not user-modifiable
+0x0f,	# 0x60 : not user-modifiable
+0x01,	# 0x61 : not user-modifiable
+0xf1,	# 0x62 : not user-modifiable
+0x0d,	# 0x63 : not user-modifiable
+0x01,	# 0x64 : Sigma threshold MSB (mm in 14.2 format for MSB+LSB), use SetSigmaThreshold(), default value 90 mm 
+0x68,	# 0x65 : Sigma threshold LSB
+0x00,	# 0x66 : Min count Rate MSB (MCPS in 9.7 format for MSB+LSB), use SetSignalThreshold()
+0x80,	# 0x67 : Min count Rate LSB
+0x08,	# 0x68 : not user-modifiable
+0xb8,	# 0x69 : not user-modifiable
+0x00,	# 0x6a : not user-modifiable
+0x00,	# 0x6b : not user-modifiable
+0x00,	# 0x6c : Intermeasurement period MSB, 32 bits register, use SetIntermeasurementInMs()
+0x00,	# 0x6d : Intermeasurement period
+0x0f,	# 0x6e : Intermeasurement period
+0x89,	# 0x6f : Intermeasurement period LSB
+0x00,	# 0x70 : not user-modifiable
+0x00,	# 0x71 : not user-modifiable
+0x00,	# 0x72 : distance threshold high MSB (in mm, MSB+LSB), use SetD:tanceThreshold()
+0x00,	# 0x73 : distance threshold high LSB
+0x00,	# 0x74 : distance threshold low MSB ( in mm, MSB+LSB), use SetD:tanceThreshold()
+0x00,	# 0x75 : distance threshold low LSB
+0x00,	# 0x76 : not user-modifiable
+0x01,	# 0x77 : not user-modifiable
+0x0f,	# 0x78 : not user-modifiable
+0x0d,	# 0x79 : not user-modifiable
+0x0e,	# 0x7a : not user-modifiable
+0x0e,	# 0x7b : not user-modifiable
+0x00,	# 0x7c : not user-modifiable
+0x00,	# 0x7d : not user-modifiable
+0x02,	# 0x7e : not user-modifiable
+0xc7,	# 0x7f : ROI center, use SetROI()
+0xff,	# 0x80 : XY ROI (X=Width, Y=Height), use SetROI()
+0x9B,	# 0x81 : not user-modifiable
+0x00,	# 0x82 : not user-modifiable
+0x00,	# 0x83 : not user-modifiable
+0x00,	# 0x84 : not user-modifiable
+0x01,	# 0x85 : not user-modifiable
+0x00,	# 0x86 : clear interrupt, use ClearInterrupt()
+0x00	# 0x87 : start ranging, use StartRanging() or StopRanging(), If you want an automatic start after self.init() call, put 0x40 in location 0x87
 ]
 ###############################################################################
 ###############################################################################
@@ -252,14 +252,14 @@ VL51L1X_DEFAULT_CONFIGURATION = [
 """
 
 """
-*  @defgroup VL53L1_define_Error_group Error and Warning code returned by API
-*  The following DEFINE are used to identify the PAL ERROR
-*  @{
+* @defgroup VL53L1_define_Error_group Error and Warning code returned by API
+* The following DEFINE are used to identify the PAL ERROR
+* @{
 """
 VL53L1_ERROR_NONE =															  0
 VL53L1_ERROR_CALIBRATION_WARNING =											 -1
 """!< Warning invalid calibration data may be in used
-	\a  VL53L1_InitData()
+	\a VL53L1_InitData()
 	\a VL53L1_GetOffsetCalibrationData
 	\a VL53L1_SetOffsetCalibrationData"""
 VL53L1_ERROR_MIN_CLIPPED =													 -2
@@ -289,29 +289,29 @@ VL53L1_ERROR_CONTROL_INTERFACE =											-13
 """!< error reported from IO functions"""
 VL53L1_ERROR_INVALID_COMMAND =												-14
 """!< The command is not allowed in the current device state
-*  (power down"""
+* (power down"""
 VL53L1_ERROR_DIVISION_BY_ZERO =												-15
 """!< In the function a division by zero occurs"""
 VL53L1_ERROR_REF_SPAD_INIT =												-16
 """!< Error during reference SPAD initialization"""
 VL53L1_ERROR_GPH_SYNC_CHECK_FAIL =											-17
-"""!<  GPH sync interrupt check fail - API out of sync with device"""
+"""!< GPH sync interrupt check fail - API out of sync with device"""
 VL53L1_ERROR_STREAM_COUNT_CHECK_FAIL =										-18
-"""!<  Stream count check fail - API out of sync with device"""
+"""!< Stream count check fail - API out of sync with device"""
 VL53L1_ERROR_GPH_ID_CHECK_FAIL =											-19
-"""!<  GPH ID check fail - API out of sync with device"""
+"""!< GPH ID check fail - API out of sync with device"""
 VL53L1_ERROR_ZONE_STREAM_COUNT_CHECK_FAIL =									-20
-"""!<  Zone dynamic config stream count check failed - API out of sync"""
+"""!< Zone dynamic config stream count check failed - API out of sync"""
 VL53L1_ERROR_ZONE_GPH_ID_CHECK_FAIL =										-21
-"""!<  Zone dynamic config GPH ID check failed - API out of sync"""
+"""!< Zone dynamic config GPH ID check failed - API out of sync"""
 
 VL53L1_ERROR_XTALK_EXTRACTION_NO_SAMPLE_FAI =								-22
-"""!<  Thrown when run_xtalk_extraction fn has 0 succesful samples
+"""!< Thrown when run_xtalk_extraction fn has 0 succesful samples
 * when using the full array to sample the xtalk. In this case there is
 * not enough information to generate new Xtalk parm info. The function
 * will exit and leave the current xtalk parameters unaltered"""
 VL53L1_ERROR_XTALK_EXTRACTION_SIGMA_LIMIT_FAIL =							-23
-"""!<  Thrown when run_xtalk_extraction fn has found that the
+"""!< Thrown when run_xtalk_extraction fn has found that the
 * avg sigma estimate of the full array xtalk sample is > than the
 * maximal limit allowed. In this case the xtalk sample is too noisy for
 * measurement. The function will exit and leave the current xtalk parameters
@@ -319,42 +319,42 @@ VL53L1_ERROR_XTALK_EXTRACTION_SIGMA_LIMIT_FAIL =							-23
 
 
 VL53L1_ERROR_OFFSET_CAL_NO_SAMPLE_FAIL =									-24
-"""!<  Thrown if there one of stages has no valid offset calibration
-*    samples. A fatal error calibration not valid"""
+"""!< Thrown if there one of stages has no valid offset calibration
+*	samples. A fatal error calibration not valid"""
 VL53L1_ERROR_OFFSET_CAL_NO_SPADS_ENABLED_FAIL =								-25
-"""!<  Thrown if there one of stages has zero effective SPADS
-*    Traps the case when MM1 SPADs is zero.
-*    A fatal error calibration not valid"""
+"""!< Thrown if there one of stages has zero effective SPADS
+*	Traps the case when MM1 SPADs is zero.
+*	A fatal error calibration not valid"""
 VL53L1_ERROR_ZONE_CAL_NO_SAMPLE_FAIL =										-26
-"""!<  Thrown if then some of the zones have no valid samples
-*    A fatal error calibration not valid"""
+"""!< Thrown if then some of the zones have no valid samples
+*	A fatal error calibration not valid"""
 VL53L1_ERROR_TUNING_PARM_KEY_MISMATCH =										-27
-"""!<  Thrown if the tuning file key table version does not match with
+"""!< Thrown if the tuning file key table version does not match with
 * expected value. The driver expects the key table version to match
 * the compiled default version number in the define
 * #VL53L1_TUNINGPARM_KEY_TABLE_VERSION_DEFAULT*"""
 VL53L1_WARNING_REF_SPAD_CHAR_NOT_ENOUGH_SPADS =								-28
-"""!<  Thrown if there are less than 5 good SPADs are available."""
+"""!< Thrown if there are less than 5 good SPADs are available."""
 VL53L1_WARNING_REF_SPAD_CHAR_RATE_TOO_HIGH =								-29
-"""!<  Thrown if the final reference rate is greater than
+"""!< Thrown if the final reference rate is greater than
 		the upper reference rate limit - default is 40 Mcps.
 		Implies a minimum Q3 (x10) SPAD (5) selected"""
 VL53L1_WARNING_REF_SPAD_CHAR_RATE_TOO_LOW =									-30
-"""!<  Thrown if the final reference rate is less than
+"""!< Thrown if the final reference rate is less than
 		the lower reference rate limit - default is 10 Mcps.
 		Implies maximum Q1 (x1) SPADs selected"""
 
 
 VL53L1_WARNING_OFFSET_CAL_MISSING_SAMPLES =									-31
-"""!<  Thrown if there is less than the requested number of
-*    valid samples."""
+"""!< Thrown if there is less than the requested number of
+*	valid samples."""
 VL53L1_WARNING_OFFSET_CAL_SIGMA_TOO_HIGH =									-32
-"""!<  Thrown if the offset calibration range sigma estimate is greater
-*    than 8.0 mm. This is the recommended min value to yield a stable
-*    offset measurement"""
+"""!< Thrown if the offset calibration range sigma estimate is greater
+*	than 8.0 mm. This is the recommended min value to yield a stable
+*	offset measurement"""
 VL53L1_WARNING_OFFSET_CAL_RATE_TOO_HIGH =									-33
-"""!< Thrown when VL53L1_run_offset_calibration()  peak rate is greater
-		than that 50.0Mcps. This is the recommended  max rate to avoid
+"""!< Thrown when VL53L1_run_offset_calibration() peak rate is greater
+		than that 50.0Mcps. This is the recommended max rate to avoid
 		pile-up influencing the offset measurement"""
 VL53L1_WARNING_OFFSET_CAL_SPAD_COUNT_TOO_LOW =								-34
 """!< Thrown when VL53L1_run_offset_calibration() when one of stages
@@ -363,15 +363,15 @@ VL53L1_WARNING_OFFSET_CAL_SPAD_COUNT_TOO_LOW =								-34
 
 
 VL53L1_WARNING_ZONE_CAL_MISSING_SAMPLES =									-35
-"""!<  Thrown if one of more of the zones have less than
+"""!< Thrown if one of more of the zones have less than
 		the requested number of valid samples"""
 VL53L1_WARNING_ZONE_CAL_SIGMA_TOO_HIGH =									-36
-"""!<  Thrown if one or more zones have sigma estimate value greater
-*    than 8.0 mm. This is the recommended min value to yield a stable
-*    offset measurement"""
+"""!< Thrown if one or more zones have sigma estimate value greater
+*	than 8.0 mm. This is the recommended min value to yield a stable
+*	offset measurement"""
 VL53L1_WARNING_ZONE_CAL_RATE_TOO_HIGH =										-37
-"""!< Thrown if one of more zones have  peak rate higher than
-		that 50.0Mcps. This is the recommended  max rate to avoid
+"""!< Thrown if one of more zones have peak rate higher than
+		that 50.0Mcps. This is the recommended max rate to avoid
 		pile-up influencing the offset measurement"""
 
 
@@ -392,7 +392,7 @@ VL53L1_WARNING_XTALK_NO_SAMPLES_FOR_GRADIENT =								-39
 * have still been generated."""
 VL53L1_WARNING_XTALK_SIGMA_LIMIT_FOR_GRADIENT =								-40
 """!< Thrown to notify that some of the xtalk samples used for gradient
-* generation did not pass the sigma limit check  while attempting to
+* generation did not pass the sigma limit check while attempting to
 * measure the xtalk signal in vl53l1_run_xtalk_extract(). This can signify
 * that any one of the zones 0-3 yielded an avg sigma_mm value > the limit.
 * The xtalk_results struct should be referred to for further debug info.
@@ -490,9 +490,9 @@ class VL53L1X(object):
 
 	def _Init(self):
 		"""
-		* @brief One time device initialization
-		* @param void
-		* @return     0 on success,  @a #CALIBRATION_WARNING if failed
+		* @brief	One time device initialization
+		* @param	void
+		* @return	0 on success, @a #CALIBRATION_WARNING if failed
 		"""
 		return self.SensorInit()
 
@@ -508,17 +508,17 @@ class VL53L1X(object):
 
 	def GetDistance(self):
 		"""
-		* @brief Get ranging result and only that
-		* @param pRange_mm  Pointer to range distance
-		* @return           0 on success
+		* @brief			Get ranging result and only that
+		* @param pRange_mm	Pointer to range distance
+		* @return			0 on success
 		"""
 		distance = self._GetDistance_()
 		return distance
 
 	def InitSensor(self, address):
 		"""
-		* @brief       Initialize the sensor with default values
-		* @return      0 on Success
+		* @brief	Initialize the sensor with default values
+		* @return	0 on Success
 		"""
 		self.status = 0
 		sensorState = 0
@@ -552,7 +552,7 @@ class VL53L1X(object):
 
 	def GetSWVersion(self):
 		"""
-		* @brief This function returns the SW driver version
+		* @brief	This function returns the SW driver version
 		"""
 		self.status = 0
 		major = self.VL53L1X_IMPLEMENTATION_VER_MAJOR
@@ -566,7 +566,7 @@ class VL53L1X(object):
 
 	def SetI2CAddress(self, new_address):
 		"""
-		* @brief This function sets the sensor I2C address used in case multiple devices application, default address 0x52 
+		* @brief	This function sets the sensor I2C address used in case multiple devices application, default address 0x52 
 		"""
 		self.status = 0
 		self.status = self._i2c.writeByte(self.address, VL53L1_I2C_SLAVE__DEVICE_ADDRESS, new_address >> 1)
@@ -576,9 +576,9 @@ class VL53L1X(object):
 
 	def SensorInit(self):
 		"""
-		* @brief This function loads the 135 bytes default values to initialize the sensor.
-		* @param dev Device address
-		* @return 0:success, != 0:failed
+		* @brief		This function loads the 135 bytes default values to initialize the sensor.
+		* @param dev	Device address
+		* @return		0:success, != 0:failed
 		"""
 		self.status = 0
 		Addr = 0x00
@@ -591,7 +591,7 @@ class VL53L1X(object):
 		while(tmp==0):
 				tmp = self.CheckForDataReady()
 		
-		tmp  = 0
+		tmp = 0
 		self.status = self.ClearInterrupt()
 		self.status = self.StopRanging()
 		self.status = self._i2c.writeByte(self.address, VL53L1_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND, 0x09) #  two bounds VHV
@@ -602,8 +602,8 @@ class VL53L1X(object):
 
 	def ClearInterrupt(self):
 		"""
-		* @brief This function clears the interrupt, to be called after a ranging data reading
-		* to arm the interrupt for the next data ready event.
+		* @brief	This function clears the interrupt, to be called after a ranging data reading
+		* 			to arm the interrupt for the next data ready event.
 		"""
 		self.status = 0
 		self.status = self._i2c.writeByte(self.address, SYSTEM__INTERRUPT_CLEAR, 0x01)
@@ -613,8 +613,8 @@ class VL53L1X(object):
 
 	def SetInterruptPolarity(self, NewPolarity):
 		"""
-		* @brief This function programs the interrupt polarity\n
-		* 1=active high (default), 0=active low
+		* @brief	This function programs the interrupt polarity\n
+		* 			1=active high (default), 0=active low
 		"""
 		self.status = 0
 		Temp = self._i2c.readByte(self.address, GPIO_HV_MUX__CTRL)
@@ -627,13 +627,13 @@ class VL53L1X(object):
 
 	def GetInterruptPolarity(self):
 		"""
-		* @brief This function returns the current interrupt polarity\n
-		* 1=active high (default), 0=active low
+		* @brief	This function returns the current interrupt polarity\n
+		* 			1=active high (default), 0=active low
 		"""
 		self.status = 0
 		Temp = self._i2c.readByte(self.address, GPIO_HV_MUX__CTRL)
 		Temp = Temp & 0x10
-		pInterruptPolarity = not (Temp>>4)
+		pInterruptPolarity = not (Temp >> 4)
 
 		return pInterruptPolarity
 
@@ -998,8 +998,8 @@ class VL53L1X(object):
 		"""
 		self.status = 0
 		Temp = self._i2c.readWord(self.address,ALGO__PART_TO_PART_RANGE_OFFSET_MM)
-		Temp = Temp<<3
-		Temp = Temp >>5
+		Temp = Temp << 3
+		Temp = Temp >> 5
 		offset = Temp
 
 		return offset
@@ -1030,7 +1030,7 @@ class VL53L1X(object):
 		"""
 		self.status = 0
 		tmp = self._i2c.readWord(self.address,ALGO__CROSSTALK_COMPENSATION_PLANE_OFFSET_KCPS)
-		xtalk = (tmp*1000)>>9 #  * 1000 to convert kcps to cps and >> 9 (7.9 format)
+		xtalk = (tmp*1000) >> 9 # * 1000 to convert kcps to cps and >> 9 (7.9 format)
 
 		return xtalk
 
@@ -1046,11 +1046,11 @@ class VL53L1X(object):
 		* self.SetDistanceThreshold(dev,100,300,1,1): Above 300 \n
 		* self.SetDistanceThreshold(dev,100,300,2,1): Out of window \n
 		* self.SetDistanceThreshold(dev,100,300,3,1): In window \n
-		* @param   dev : device address
-		* @param  	ThreshLow(in mm) : the threshold under which one the device raises an interrupt if Window = 0
-		* @param 	ThreshHigh(in mm) :  the threshold above which one the device raises an interrupt if Window = 1
-		* @param   Window detection mode : 0=below, 1=above, 2=out, 3=in
-		* @param   IntOnNoTarget = 1 (No longer used - just use 1)
+		* @param	dev : device address
+		* @param	ThreshLow(in mm) : the threshold under which one the device raises an interrupt if Window = 0
+		* @param 	ThreshHigh(in mm) : the threshold above which one the device raises an interrupt if Window = 1
+		* @param	Window detection mode : 0=below, 1=above, 2=out, 3=in
+		* @param	IntOnNoTarget = 1 (No longer used - just use 1)
 		"""
 		self.status = 0
 		Temp = 0
@@ -1154,7 +1154,7 @@ class VL53L1X(object):
 		self.status = 0
 		tmp = self._i2c.readWord(self.address,
 					RANGE_CONFIG__MIN_COUNT_RATE_RTN_LIMIT_MCPS)
-		signal = tmp <<3
+		signal = tmp << 3
 		return signal
 
 
@@ -1164,7 +1164,7 @@ class VL53L1X(object):
 		"""
 		self.status = 0
 
-		if(Sigma>(0xFFFF>>2)):
+		if(Sigma>(0xFFFF >> 2)):
 			return 1
 		
 		#  16 bits register 14.2 format
@@ -1200,7 +1200,7 @@ class VL53L1X(object):
 		while(tmp==0):
 			tmp = self.CheckForDataReady()
 		
-		tmp  = 0
+		tmp = 0
 		self.status = self.ClearInterrupt()
 		self.status = self.StopRanging()
 		self.status = self._i2c.writeByte(self.address, VL53L1_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND, 0x09) #  two bounds VHV
@@ -1209,7 +1209,7 @@ class VL53L1X(object):
 
 
 
-	#  VL53L1X_calibration.h functions
+	# VL53L1X_calibration.h functions
 	###############################################################################
 	###############################################################################
 
@@ -1286,7 +1286,7 @@ class VL53L1X(object):
 		AverageDistance = AverageDistance / 50
 		AverageSpadNb = AverageSpadNb / 50
 		AverageSignalRate = AverageSignalRate / 50
-		#  Calculate Xtalk value
+		# Calculate Xtalk value
 		xtalk = (512*(AverageSignalRate*(1-(AverageDistance/TargetDistInMm)))/AverageSpadNb)
 		self.status = self._i2c.writeWord(self.address, 0x0016, xtalk)
 		return self.status #,xtalk???
@@ -1298,7 +1298,7 @@ class VL53L1X(object):
 # protected:
 
 
-#  Write and read functions from I2C
+# Write and read functions from I2C
 ###############################################################################
 ###############################################################################
 
@@ -1330,29 +1330,29 @@ class VL53L1X(object):
 		* Platform implementation of WaitValueMaskEx V2WReg script command
 		*
 		* WaitValueMaskEx(
-		*          duration_ms,
-		*          index,
-		*          value,
-		*          mask,
-		*          poll_delay_ms)
+		* 		duration_ms,
+		* 		index,
+		* 		value,
+		* 		mask,
+		* 		poll_delay_ms)
 		"""
 
-		self.status     = VL53L1_ERROR_NONE
-		start_time_ms = 0
-		current_time_ms = 0
-		polling_time_ms = 0
-		byte_value      = 0
-		found           = 0
+		self.status	 = VL53L1_ERROR_NONE
+		start_time_ms	= 0
+		current_time_ms	= 0
+		polling_time_ms	= 0
+		byte_value		= 0
+		found			= 0
 
 
 
-		#  calculate time limit in absolute time
+		# calculate time limit in absolute time
 
 		start_time_ms = self.__GetTickCount()
 
-		#  remember current trace functions and temporarily disable function logging
+		# remember current trace functions and temporarily disable function logging
 
-		#  wait until value is found, timeout reached on error occurred
+		# wait until value is found, timeout reached on error occurred
 
 		while ((self.status == VL53L1_ERROR_NONE) and
 			(polling_time_ms < timeout_ms) and
@@ -1364,12 +1364,12 @@ class VL53L1X(object):
 			if ((byte_value & mask) == value):
 				found = 1
 
-			if (self.status == VL53L1_ERROR_NONE  and
+			if (self.status == VL53L1_ERROR_NONE and
 				found == 0 and
 				poll_delay_ms > 0):
 				self.status = self.__WaitMs(poll_delay_ms)
 
-			#  Update polling time (Compare difference rather than absolute to negate 32bit wrap around issue)
+			# Update polling time (Compare difference rather than absolute to negate 32bit wrap around issue)
 			current_time_ms = self.__GetTickCount()
 			polling_time_ms = current_time_ms - start_time_ms
 
