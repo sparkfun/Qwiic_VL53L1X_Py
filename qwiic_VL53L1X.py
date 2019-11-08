@@ -1458,9 +1458,13 @@ class VL53L1X(object):
 		write = i2c_msg.write(address, [registerMSB, registerLSB])	# Write part of transaction
 		read = i2c_msg.read(address, nbytes)						# Read part of transaction
 
-		buffer = self._i2c.i2c_rdwr(write, read)
+		self._i2c.i2c_rdwr(write, read)
+		buffer = list(read)
 
-		for i in range(0, nbytes + 1):
+		for i in range(0, nbytes):
 			data = ( buffer[ (nbytes - 1) - i ] << (i*8) ) + data
+
+		#for i, val in enumerate(read):
+		#	data = ( val << (i*8) ) + data
 
 		return data
