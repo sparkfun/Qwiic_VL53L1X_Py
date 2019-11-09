@@ -15,6 +15,7 @@
 """
 
 from qwiic_VL53L1X_v0012 import VL53L1X
+import time
 
 print("VL53L1X Qwiic Test\n")
 ToF = VL53L1X()
