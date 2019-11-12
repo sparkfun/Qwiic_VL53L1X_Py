@@ -71,8 +71,8 @@
 #----------------------------------------------
 import time							# Time access and conversion package
 import math							# Basic math package
-# import qwiic_i2c					# I2C bus driver package
-from smbus2 import SMBus, i2c_msg	# I2C bus driver package
+import qwiic_i2c					# I2C bus driver package
+# from smbus2 import SMBus, i2c_msg	# I2C bus driver package
 
 # From vL53l1x_class.h Header File
 ###############################################################################
@@ -475,9 +475,7 @@ class VL53L1X(object):
 
 		# Load the I2C driver if one isn't provided
 		if i2c_driver == None:
-			# self._i2c = qwiic_i2c.getI2CDriver()
-			# New Driver smbus2
-			self._i2c = SMBus(1)
+			self._i2c = qwiic_i2c.getI2CDriver()
 	
 			if self._i2c == None:
 				print("Unable to load I2C driver for this platform.")
@@ -1427,7 +1425,7 @@ class VL53L1X(object):
 			
 			return
 		
-		self.status = self._i2c.write_i2c_block_data(address, registerMSB, buffer)
+		self.status = self._i2c.writeBlock(address, registerMSB, buffer)
 
 		return self.status
 	
@@ -1455,8 +1453,8 @@ class VL53L1X(object):
 			return
 
 		# Setup for read/write transactions on smbus 2
-		write = i2c_msg.write(address, [registerMSB, registerLSB])	# Write part of transaction
-		read = i2c_msg.read(address, nbytes)						# Read part of transaction
+		write = _i2c.i2c_msg.write(address, [registerMSB, registerLSB])	# Write part of transaction
+		read = _i2c.i2c_msg.read(address, nbytes)						# Read part of transaction
 
 		self._i2c.i2c_rdwr(write, read)
 		buffer = list(read)
