@@ -1461,11 +1461,12 @@ class VL53L1X(object):
 			return
 
 		# Setup for read/write transactions on smbus 2
-		write = _i2c.i2c_msg.write(address, [registerMSB, registerLSB])	# Write part of transaction
-		read = _i2c.i2c_msg.read(address, nbytes)						# Read part of transaction
+		# write = self.i2c_custom.write(address, [registerMSB, registerLSB])	# Write part of transaction
+		# read = self.i2c_custom.read(address, nbytes)						# Read part of transaction
 
-		self._i2c.i2c_rdwr(write, read)
-		buffer = list(read)
+		# self._i2c.i2c_rdwr(write, read)
+		read_data = self._i2c.i2c_rdwr(address, [registerMSB, registerLSB], nbytes)
+		buffer = list(read_data)
 
 		for i in range(0, nbytes):
 			data = ( buffer[ (nbytes - 1) - i ] << (i*8) ) + data
