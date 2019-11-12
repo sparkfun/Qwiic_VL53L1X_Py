@@ -14,7 +14,7 @@
 	Are you getting weird readings? Be sure the vacuum tape has been removed from the sensor.
 """
 
-from qwiic_VL53L1X_v0012 import VL53L1X
+from qwiic_VL53L1X import VL53L1X
 import time, statistics
 
 print("VL53L1X Qwiic Test\n")
