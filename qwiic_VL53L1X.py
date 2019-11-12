@@ -134,6 +134,14 @@ _VL53L1X_DEFAULT_DEVICE_ADDRESS =										0x52
 
 _DEFAULT_NAME = "Qwiic 4m Distance Sensor (ToF)"
 
+###############################################################################
+###############################################################################
+_FULL_ADDRESS_LIST = list(range(0x08,0x77+1))					# Full I2C Address List (excluding resrved addresses)
+_FULL_ADDRESS_LIST.remove(_VL53L1X_DEFAULT_DEVICE_ADDRESS >> 1) # Remove Default Address of VL53L1X from list
+_AVAILABLE_I2C_ADDRESS = [_VL53L1X_DEFAULT_DEVICE_ADDRESS >> 1]	# Initialize with Default Address of VL53L1X
+_AVAILABLE_I2C_ADDRESS.extend(_FULL_ADDRESS_LIST)				# Add Full Range of I2C Addresses
+
+
 # From vL53l1x_class.cpp C++ File
 ###############################################################################
 ###############################################################################
@@ -445,7 +453,7 @@ class VL53L1X(object):
 
 	#----------------------------------------------
 	# Available Addresses:
-	available_addresses = _VL53L1X_DEFAULT_DEVICE_ADDRESS >> 1
+	available_addresses = _AVAILABLE_I2C_ADDRESS
 
 	#----------------------------------------------
 	# Constructor
@@ -471,7 +479,7 @@ class VL53L1X(object):
 
 		# Did the user specify an I2C address?
 		# Defaults to 0x52 if unspecified.
-		self.address = address if address != None else self.available_addresses # [0]
+		self.address = address if address != None else self.available_addresses[0]
 
 		# Load the I2C driver if one isn't provided
 		if i2c_driver == None:
