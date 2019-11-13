@@ -456,12 +456,6 @@ VL53L1_ERROR_PLATFORM_SPECIFIC_START =										-60
 ###############################################################################
 class VL53L1X(object):
 
-	# Software Version Information
-	VL53L1X_IMPLEMENTATION_VER_MAJOR=		1
-	VL53L1X_IMPLEMENTATION_VER_MINOR=		0
-	VL53L1X_IMPLEMENTATION_VER_SUB=			1
-	VL53L1X_IMPLEMENTATION_VER_REVISION=	0000
-
 	"""
 	SparkFunVL53L1X
 	Initialise the VL53L1X chip at ``address`` with ``i2c_driver``.
@@ -476,6 +470,13 @@ class VL53L1X(object):
 						False-	Issue loading I2C driver
 	:rtype:				Bool
 	"""
+
+	# Software Version Information
+	VL53L1X_IMPLEMENTATION_VER_MAJOR=		1
+	VL53L1X_IMPLEMENTATION_VER_MINOR=		0
+	VL53L1X_IMPLEMENTATION_VER_SUB=			1
+	VL53L1X_IMPLEMENTATION_VER_REVISION=	0000
+
 	#----------------------------------------------
 	# Device Name:
 	device_name = _DEFAULT_NAME
