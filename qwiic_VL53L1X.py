@@ -571,13 +571,13 @@ class VL53L1X(object):
 	
 		if self.debug == 1:
 			byteData = self.__i2cRead(self.address, 0x010F, 1)
-			print("VL53L1X Model_ID: %s \n", byteData)
+			print("VL53L1X Model_ID: %s", byteData)
 
 			byteData = self.__i2cRead(self.address, 0x0110, 1)
-			print("VL53L1X Module_Type: %s \n", byteData)
+			print("VL53L1X Module_Type: %s", byteData)
 
 			wordData = self.__i2cRead(self.address, 0x010F, 2)
-			print("VL53L1X: %s \n", wordData)
+			print("VL53L1X: %s", wordData)
 	
 	
 		while (not sensorState and not self.status):
