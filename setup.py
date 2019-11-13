@@ -46,14 +46,14 @@ with io.open(path.join(here, "DESCRIPTION.rst"), encoding="utf-8") as f:
 
 setup(
 
-    name='sparkfun_qwiic_VL53L1X',
+    name='sparkfun_qwiic_vl53l1x',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # http://packaging.python.org/en/latest/tutorial.html#version
     version='0.9.0',
 
-    description='SparkFun Electronics qwiic VL53L1X',
+    description='SparkFun Electronics Qwiic VL53L1X',
     long_description=long_description,
 
     # The project's main homepage.
@@ -96,6 +96,6 @@ setup(
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
-    py_modules=["qwiic_VL53L1X"],
+    py_modules=["qwiic_vl53l1x"],
 
 )
