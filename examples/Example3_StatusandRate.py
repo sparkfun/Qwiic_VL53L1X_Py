@@ -20,7 +20,7 @@ import time, statistics
 print("VL53L1X Qwiic Test\n")
 ToF = VL53L1X()
 
-if (ToF.SensorInit() == 0):					 # Begin returns 0 on a good init
+if (ToF.SensorInit() == None):					 # Begin returns 0 on a good init
 	print("Sensor online!\n")
 
 ToF.SetDistanceMode(1)	# Sets Distance Mode Short (Long- Change value to 2)
