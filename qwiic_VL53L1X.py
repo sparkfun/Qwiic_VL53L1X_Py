@@ -1,71 +1,111 @@
-"""
-********************************************************************************
-* @file		vl53l0x_class.cpp
-* @author	IMG
-* @version	V0.0.1
-* @date		14-December-2018
-* @brief	Implementation file for the VL53L1X driver class
-********************************************************************************
-* @attention
-* <h2><center>&copy; COPYRIGHT(c) 2018 STMicroelectronics International N.V. All rights reserved.</center></h2>
-********************************************************************************
-*
-* Copyright (c) 2017, STMicroelectronics - All Rights Reserved
-*
-* This file is part of VL53L1 Core and is dual licensed,
-* either 'STMicroelectronics
-* Proprietary license'
-* or 'BSD 3-clause "New" or "Revised" License' , at your option.
-*
-********************************************************************************
-*
-* 'STMicroelectronics Proprietary license'
-*
-********************************************************************************
-*
-* License terms: STMicroelectronics Proprietary in accordance with licensing
-* terms at www.st.com/sla0081
-*
-* STMicroelectronics confidential
-* Reproduction and Communication of this document is strictly prohibited unless
-* specifically authorized in writing by STMicroelectronics.
-*
-********************************************************************************
-*
-* Alternatively, VL53L1 Core may be distributed under the terms of
-* 'BSD 3-clause "New" or "Revised" License', in which case the following
-* provisions apply instead of the ones mentioned above :
-*
-********************************************************************************
-*
-* License terms: BSD 3-clause "New" or "Revised" License.
-*
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-*
-* 1. Redistributions of source code must retain the above copyright notice, this
-* list of conditions and the following disclaimer.
-*
-* 2. Redistributions in binary form must reproduce the above copyright notice,
-* this list of conditions and the following disclaimer in the documentation
-* and/or other materials provided with the distribution.
-*
-* 3. Neither the name of the copyright holder nor the names of its contributors
-* may be used to endorse or promote products derived from this software
-* without specific prior written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-* DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-* FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-* DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-* SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-* CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-* OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-* OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-********************************************************************************
-"""
+#-----------------------------------------------------------------------
+# SparkFun Qwiic VL53L1X Library
+#-----------------------------------------------------------------------
+#
+# Ported by SparkFun Electronics, October 2019
+# Author: Wes Furuya
+#
+# Compatibility:
+#     * Original: https://www.sparkfun.com/products/14722
+# 
+# Do you like this library? Help support SparkFun. Buy a board!
+# For more information on Qwiic Distance Sensor, check out the product
+# page linked above.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http:www.gnu.org/licenses/>.
+#
+#=======================================================================
+# Copyright (c) 2019 SparkFun Electronics
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+# CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+# TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+# SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#=======================================================================
+#
+# pylint: disable=line-too-long, bad-whitespace, invalid-name
+
+###############################################################################
+###############################################################################
+#
+# Original License:
+#=======================================================================
+# @author	IMG
+# @version	V0.0.1
+# @date		14-December-2018
+# @brief	Implementation file for the VL53L1X driver class
+#=======================================================================
+# COPYRIGHT(c) 2017 STMicroelectronics International N.V. All rights reserved.
+#
+# This file is part of VL53L1 Core and is dual licensed,
+# either 'STMicroelectronics Proprietary license'
+# or 'BSD 3-clause "New" or "Revised" License' , at your option.
+#=======================================================================
+#
+# 'STMicroelectronics Proprietary license'
+#=======================================================================
+#
+# License terms: STMicroelectronics Proprietary in accordance with licensing
+# terms at www.st.com/sla0081
+#
+# STMicroelectronics confidential
+# Reproduction and Communication of this document is strictly prohibited unless
+# specifically authorized in writing by STMicroelectronics.
+#
+#=======================================================================
+#
+# Alternatively, VL53L1 Core may be distributed under the terms of
+# 'BSD 3-clause "New" or "Revised" License', in which case the following
+# provisions apply instead of the ones mentioned above :
+#=======================================================================
+#
+# License terms: BSD 3-clause "New" or "Revised" License.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+# list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+# this list of conditions and the following disclaimer in the documentation
+# and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its contributors
+# may be used to endorse or promote products derived from this software
+# without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#=======================================================================
 
 # Load Necessary Modules:
 #----------------------------------------------
@@ -251,168 +291,157 @@ VL51L1X_DEFAULT_CONFIGURATION = [
 # From vL53l1_error_codes.h Header File
 ###############################################################################
 ###############################################################################
-"""
-* @file vl53l1_error_codes.h
-* @brief Error Code definitions for VL53L1 API.
-*
-***************************************
-* PRIVATE define do not edit
-***************************************
-"""
+# @brief Error Code definitions for VL53L1 API.
+#=======================================================================
+# PRIVATE define do not edit
+#=======================================================================
 
-"""
-* @defgroup VL53L1_define_Error_group Error and Warning code returned by API
-* The following DEFINE are used to identify the PAL ERROR
-* @{
-"""
+# @defgroup VL53L1_define_Error_group Error and Warning code returned by API
+# The following DEFINE are used to identify the PAL ERROR
+
 VL53L1_ERROR_NONE =															  0
 VL53L1_ERROR_CALIBRATION_WARNING =											 -1
-"""!< Warning invalid calibration data may be in used
-	\a VL53L1_InitData()
-	\a VL53L1_GetOffsetCalibrationData
-	\a VL53L1_SetOffsetCalibrationData"""
+# """Warning invalid calibration data may be in used
+# 	\a VL53L1_InitData()
+# 	\a VL53L1_GetOffsetCalibrationData
+# 	\a VL53L1_SetOffsetCalibrationData"""
 VL53L1_ERROR_MIN_CLIPPED =													 -2
-"""!< Warning parameter passed was clipped to min before to be applied"""
+# """Warning parameter passed was clipped to min before to be applied"""
 
 VL53L1_ERROR_UNDEFINED =													 -3
-"""!< Unqualified error"""
+# """Unqualified error"""
 VL53L1_ERROR_INVALID_PARAMS =												 -4
-"""!< Parameter passed is invalid or out of range"""
+# """Parameter passed is invalid or out of range"""
 VL53L1_ERROR_NOT_SUPPORTED =												 -5
-"""!< Function is not supported in current mode or configuration"""
+# """Function is not supported in current mode or configuration"""
 VL53L1_ERROR_RANGE_ERROR =													 -6
-"""!< Device report a ranging error interrupt status"""
+# """Device report a ranging error interrupt status"""
 VL53L1_ERROR_TIME_OUT =														 -7
-"""!< Aborted due to time out"""
+# """Aborted due to time out"""
 VL53L1_ERROR_MODE_NOT_SUPPORTED =											 -8
-"""!< Asked mode is not supported by the device"""
+# """Asked mode is not supported by the device"""
 VL53L1_ERROR_BUFFER_TOO_SMALL =												 -9
-"""!< ..."""
+# """..."""
 VL53L1_ERROR_COMMS_BUFFER_TOO_SMALL =										-10
-"""!< Supplied buffer is larger than I2C supports"""
+# """Supplied buffer is larger than I2C supports"""
 VL53L1_ERROR_GPIO_NOT_EXISTING =											-11
-"""!< User tried to setup a non-existing GPIO pin"""
+# """User tried to setup a non-existing GPIO pin"""
 VL53L1_ERROR_GPIO_FUNCTIONALITY_NOT_SUPPORTED =								-12
-"""!< unsupported GPIO functionality"""
+# """unsupported GPIO functionality"""
 VL53L1_ERROR_CONTROL_INTERFACE =											-13
-"""!< error reported from IO functions"""
+# """error reported from IO functions"""
 VL53L1_ERROR_INVALID_COMMAND =												-14
-"""!< The command is not allowed in the current device state
-* (power down"""
+# """The command is not allowed in the current device state (power down)"""
 VL53L1_ERROR_DIVISION_BY_ZERO =												-15
-"""!< In the function a division by zero occurs"""
+# """In the function a division by zero occurs"""
 VL53L1_ERROR_REF_SPAD_INIT =												-16
-"""!< Error during reference SPAD initialization"""
+# """Error during reference SPAD initialization"""
 VL53L1_ERROR_GPH_SYNC_CHECK_FAIL =											-17
-"""!< GPH sync interrupt check fail - API out of sync with device"""
+# """GPH sync interrupt check fail - API out of sync with device"""
 VL53L1_ERROR_STREAM_COUNT_CHECK_FAIL =										-18
-"""!< Stream count check fail - API out of sync with device"""
+# """Stream count check fail - API out of sync with device"""
 VL53L1_ERROR_GPH_ID_CHECK_FAIL =											-19
-"""!< GPH ID check fail - API out of sync with device"""
+# """GPH ID check fail - API out of sync with device"""
 VL53L1_ERROR_ZONE_STREAM_COUNT_CHECK_FAIL =									-20
-"""!< Zone dynamic config stream count check failed - API out of sync"""
+# """Zone dynamic config stream count check failed - API out of sync"""
 VL53L1_ERROR_ZONE_GPH_ID_CHECK_FAIL =										-21
-"""!< Zone dynamic config GPH ID check failed - API out of sync"""
+# """Zone dynamic config GPH ID check failed - API out of sync"""
 
 VL53L1_ERROR_XTALK_EXTRACTION_NO_SAMPLE_FAI =								-22
-"""!< Thrown when run_xtalk_extraction fn has 0 succesful samples
-* when using the full array to sample the xtalk. In this case there is
-* not enough information to generate new Xtalk parm info. The function
-* will exit and leave the current xtalk parameters unaltered"""
+# """Thrown when run_xtalk_extraction fn has 0 succesful samples when using
+# the full array to sample the xtalk. In this case there is not enough
+# information to generate new Xtalk parm info. The function will exit and
+# leave the current xtalk parameters unaltered"""
 VL53L1_ERROR_XTALK_EXTRACTION_SIGMA_LIMIT_FAIL =							-23
-"""!< Thrown when run_xtalk_extraction fn has found that the
-* avg sigma estimate of the full array xtalk sample is > than the
-* maximal limit allowed. In this case the xtalk sample is too noisy for
-* measurement. The function will exit and leave the current xtalk parameters
-* unaltered."""
+# """Thrown when run_xtalk_extraction fn has found that the avg sigma
+# estimate of the full array xtalk sample is > than the maximal limit
+# allowed. In this case the xtalk sample is too noisy for measurement.
+# The function will exit and leave the current xtalk parameters unaltered."""
 
 
 VL53L1_ERROR_OFFSET_CAL_NO_SAMPLE_FAIL =									-24
-"""!< Thrown if there one of stages has no valid offset calibration
-*	samples. A fatal error calibration not valid"""
+# """Thrown if there one of stages has no valid offset calibration
+# samples. A fatal error calibration not valid"""
 VL53L1_ERROR_OFFSET_CAL_NO_SPADS_ENABLED_FAIL =								-25
-"""!< Thrown if there one of stages has zero effective SPADS
-*	Traps the case when MM1 SPADs is zero.
-*	A fatal error calibration not valid"""
+# """Thrown if there one of stages has zero effective SPADS Traps the case
+# when MM1 SPADs is zero. A fatal error calibration not valid"""
 VL53L1_ERROR_ZONE_CAL_NO_SAMPLE_FAIL =										-26
-"""!< Thrown if then some of the zones have no valid samples
-*	A fatal error calibration not valid"""
+# """Thrown if then some of the zones have no valid samples. A fatal error
+# calibration not valid"""
 VL53L1_ERROR_TUNING_PARM_KEY_MISMATCH =										-27
-"""!< Thrown if the tuning file key table version does not match with
-* expected value. The driver expects the key table version to match
-* the compiled default version number in the define
-* #VL53L1_TUNINGPARM_KEY_TABLE_VERSION_DEFAULT*"""
+# """Thrown if the tuning file key table version does not match with
+# expected value. The driver expects the key table version to match the 
+# compiled default version number in the define
+# #VL53L1_TUNINGPARM_KEY_TABLE_VERSION_DEFAULT*"""
 VL53L1_WARNING_REF_SPAD_CHAR_NOT_ENOUGH_SPADS =								-28
-"""!< Thrown if there are less than 5 good SPADs are available."""
+# """Thrown if there are less than 5 good SPADs are available."""
 VL53L1_WARNING_REF_SPAD_CHAR_RATE_TOO_HIGH =								-29
-"""!< Thrown if the final reference rate is greater than
-		the upper reference rate limit - default is 40 Mcps.
-		Implies a minimum Q3 (x10) SPAD (5) selected"""
+# """Thrown if the final reference rate is greater than the upper reference
+# rate limit - default is 40 Mcps. Implies a minimum Q3 (x10) SPAD (5)
+# selected"""
 VL53L1_WARNING_REF_SPAD_CHAR_RATE_TOO_LOW =									-30
-"""!< Thrown if the final reference rate is less than
-		the lower reference rate limit - default is 10 Mcps.
-		Implies maximum Q1 (x1) SPADs selected"""
+# """Thrown if the final reference rate is less than the lower reference
+# rate limit - default is 10 Mcps. Implies maximum Q1 (x1) SPADs selected"""
 
 
 VL53L1_WARNING_OFFSET_CAL_MISSING_SAMPLES =									-31
-"""!< Thrown if there is less than the requested number of
-*	valid samples."""
+# """Thrown if there is less than the requested number of valid samples."""
 VL53L1_WARNING_OFFSET_CAL_SIGMA_TOO_HIGH =									-32
-"""!< Thrown if the offset calibration range sigma estimate is greater
-*	than 8.0 mm. This is the recommended min value to yield a stable
-*	offset measurement"""
+# """Thrown if the offset calibration range sigma estimate is greater than
+# 8.0 mm. This is the recommended min value to yield a stable offset
+# measurement"""
 VL53L1_WARNING_OFFSET_CAL_RATE_TOO_HIGH =									-33
-"""!< Thrown when VL53L1_run_offset_calibration() peak rate is greater
-		than that 50.0Mcps. This is the recommended max rate to avoid
-		pile-up influencing the offset measurement"""
+# """Thrown when VL53L1_run_offset_calibration() peak rate is greater than
+# that 50.0Mcps. This is the recommended max rate to avoid pile-up
+# influencing the offset measurement"""
 VL53L1_WARNING_OFFSET_CAL_SPAD_COUNT_TOO_LOW =								-34
-"""!< Thrown when VL53L1_run_offset_calibration() when one of stages
-		range has less that 5.0 effective SPADS. This is the recommended
-		min value to yield a stable offset"""
+# """Thrown when VL53L1_run_offset_calibration() when one of stages range
+# has less that 5.0 effective SPADS. This is the recommended min value to
+# yield a stable offset"""
 
 
 VL53L1_WARNING_ZONE_CAL_MISSING_SAMPLES =									-35
-"""!< Thrown if one of more of the zones have less than
-		the requested number of valid samples"""
+# """Thrown if one of more of the zones have less than the requested number
+# of valid samples"""
 VL53L1_WARNING_ZONE_CAL_SIGMA_TOO_HIGH =									-36
-"""!< Thrown if one or more zones have sigma estimate value greater
-*	than 8.0 mm. This is the recommended min value to yield a stable
-*	offset measurement"""
+# """Thrown if one or more zones have sigma estimate value greater than
+# 8.0 mm. This is the recommended min value to yield a stable offset
+# measurement"""
 VL53L1_WARNING_ZONE_CAL_RATE_TOO_HIGH =										-37
-"""!< Thrown if one of more zones have peak rate higher than
-		that 50.0Mcps. This is the recommended max rate to avoid
-		pile-up influencing the offset measurement"""
+# """Thrown if one of more zones have peak rate higher than that 50.0Mcps.
+# This is the recommended max rate to avoid pile-up influencing the offset
+# measurement"""
 
 
 VL53L1_WARNING_XTALK_MISSING_SAMPLES =										-38
-"""!< Thrown to notify that some of the xtalk samples did not yield
-* valid ranging pulse data while attempting to measure
-* the xtalk signal in vl53l1_run_xtalk_extract(). This can signify any of
-* the zones are missing samples, for further debug information the
-* xtalk_results struct should be referred to. This warning is for
-* notification only, the xtalk pulse and shape have still been generated"""
+# """Thrown to notify that some of the xtalk samples did not yield valid
+# ranging pulse data while attempting to measure the xtalk signal in
+# vl53l1_run_xtalk_extract(). This can signify any of the zones are missing
+# samples, for further debug information the xtalk_results struct should be
+# referred to. This warning is for notification only, the xtalk pulse and
+# shape have still been generated"""
 VL53L1_WARNING_XTALK_NO_SAMPLES_FOR_GRADIENT =								-39
-"""!< Thrown to notify that some of teh xtalk samples used for gradient
-* generation did not yield valid ranging pulse data while attempting to
-* measure the xtalk signal in vl53l1_run_xtalk_extract(). This can signify
-* that any one of the zones 0-3 yielded no successful samples. The
-* xtalk_results struct should be referred to for further debug info.
-* This warning is for notification only, the xtalk pulse and shape
-* have still been generated."""
+# """Thrown to notify that some of teh xtalk samples used for gradient
+# generation did not yield valid ranging pulse data while attempting to
+# measure the xtalk signal in vl53l1_run_xtalk_extract(). This can signify
+# that any one of the zones 0-3 yielded no successful samples. The
+# xtalk_results struct should be referred to for further debug info. This
+# warning is for notification only, the xtalk pulse and shape have still
+# been generated."""
 VL53L1_WARNING_XTALK_SIGMA_LIMIT_FOR_GRADIENT =								-40
-"""!< Thrown to notify that some of the xtalk samples used for gradient
-* generation did not pass the sigma limit check while attempting to
-* measure the xtalk signal in vl53l1_run_xtalk_extract(). This can signify
-* that any one of the zones 0-3 yielded an avg sigma_mm value > the limit.
-* The xtalk_results struct should be referred to for further debug info.
-* This warning is for notification only, the xtalk pulse and shape
-* have still been generated."""
+# """Thrown to notify that some of the xtalk samples used for gradient
+# generation did not pass the sigma limit check while attempting to
+# measure the xtalk signal in vl53l1_run_xtalk_extract(). This can signify
+# that any one of the zones 0-3 yielded an avg sigma_mm value > the limit.
+# The xtalk_results struct should be referred to for further debug info.
+# This warning is for notification only, the xtalk pulse and shape have
+# still been generated."""
 VL53L1_ERROR_NOT_IMPLEMENTED =												-41
-"""!< Tells requested functionality has not been implemented yet or
-* not compatible with the device"""
+# """Tells requested functionality has not been implemented yet or not
+# compatible with the device"""
 VL53L1_ERROR_PLATFORM_SPECIFIC_START =										-60
-"""!< Tells the starting code for platform
-	 @} VL53L1_define_Error_group"""
+# """Tells the starting code for platform
+# 	 @} VL53L1_define_Error_group"""
 
 # _VL53L1_ERROR_CODES_H_
 ###############################################################################
@@ -436,16 +465,16 @@ class VL53L1X(object):
 	"""
 	SparkFunVL53L1X
 	Initialise the VL53L1X chip at ``address`` with ``i2c_driver``.
-		:param address:		The I2C address to use for the device.
-							If not provided, the default address is
-							used.
-		:param i2c_driver:	An existing i2c driver object. If not
-							provided a driver object is created.
-		
-		:return:			Constructor Initialization
-							True-	Successful
-							False-	Issue loading I2C driver
-		:rtype:				Bool
+	:param address:		The I2C address to use for the device.
+						If not provided, the default address is
+						used.
+	:param i2c_driver:	An existing i2c driver object. If not
+						provided a driver object is created.
+	
+	:return:			Constructor Initialization
+						True-	Successful
+						False-	Issue loading I2C driver
+	:rtype:				Bool
 	"""
 	#----------------------------------------------
 	# Device Name:
@@ -466,7 +495,7 @@ class VL53L1X(object):
 							If not provided, the method will default to
 							the first address in the
 							'available_addresses' list.
-								Default = 0x40
+								Default = 0x29
 		:param debug:		Designated whether or not to print debug
 							statements.
 							0-	Don't print debug statements
@@ -501,16 +530,18 @@ class VL53L1X(object):
 
 	def _Init(self):
 		"""
-		* @brief	One time device initialization
-		* @param	void
-		* @return	0 on success, @a #CALIBRATION_WARNING if failed
+		One time device initialization
+		:return:	0 on success
+					#CALIBRATION_WARNING if failed
 		"""
 		return self.SensorInit()
 
 
 	def _ReadID(self):
 		"""
-		Read function of the ID device 
+		Read function of the ID device. (Verifies id ID matches factory number).
+		:return:	 0- Correct
+					-1- Failure
 		"""
 		if (self.GetSensorId() == 0xEEAC):
 			return 0
@@ -519,17 +550,18 @@ class VL53L1X(object):
 
 	def GetDistance(self):
 		"""
-		* @brief			Get ranging result and only that
-		* @param pRange_mm	Pointer to range distance
-		* @return			0 on success
+		Get ranging result and only that
+		:return pRange_mm:	Range distance in mm
+		:rtype: 			Integer
 		"""
 		distance = self._GetDistance_()
 		return distance
 
 	def InitSensor(self, address):
 		"""
-		* @brief	Initialize the sensor with default values
-		* @return	0 on Success
+		Initialize the sensor with default values
+		:param address:	Device address
+		:return:	0 on Success
 		"""
 		self.status = 0
 		sensorState = 0
@@ -565,7 +597,9 @@ class VL53L1X(object):
 
 	def GetSWVersion(self):
 		"""
-		* @brief	This function returns the SW driver version
+		This function returns the SW driver version
+		:return:	[major, minor, build, revision] numbers
+		:rtype:		List
 		"""
 		self.status = 0
 		major = self.VL53L1X_IMPLEMENTATION_VER_MAJOR
@@ -579,7 +613,8 @@ class VL53L1X(object):
 
 	def SetI2CAddress(self, new_address):
 		"""
-		* @brief	This function sets the sensor I2C address used in case multiple devices application, default address 0x52 
+		This function sets the sensor I2C address used in case multiple devices application, default address 0x29 (0x52 >> 1)
+		:param new_address: I2C address to change device to
 		"""
 		self.status = 0
 
@@ -590,9 +625,9 @@ class VL53L1X(object):
 
 	def SensorInit(self):
 		"""
-		* @brief		This function loads the 135 bytes default values to initialize the sensor.
-		* @param dev	Device address
-		* @return		0:success, != 0:failed
+		This function loads the 135 bytes default values to initialize the sensor.
+		:return:	0:success
+					!= 0:failed
 		"""
 		self.status = 0
 		Addr = 0x00
@@ -616,8 +651,7 @@ class VL53L1X(object):
 
 	def ClearInterrupt(self):
 		"""
-		* @brief	This function clears the interrupt, to be called after a ranging data reading
-		* 			to arm the interrupt for the next data ready event.
+		This function clears the interrupt, to be called after a ranging data reading to arm the interrupt for the next data ready event.
 		"""
 		self.status = 0
 		self.status = self.__i2cWrite(self.address, SYSTEM__INTERRUPT_CLEAR, 0x01, 1)
@@ -627,8 +661,9 @@ class VL53L1X(object):
 
 	def SetInterruptPolarity(self, NewPolarity):
 		"""
-		* @brief	This function programs the interrupt polarity\n
-		* 			1=active high (default), 0=active low
+		This function programs the interrupt polarity
+		:param NewPolarity:	1=active high (default)
+							0=active low
 		"""
 		self.status = 0
 		Temp = self.__i2cRead(self.address, GPIO_HV_MUX__CTRL, 1)
@@ -641,8 +676,10 @@ class VL53L1X(object):
 
 	def GetInterruptPolarity(self):
 		"""
-		* @brief	This function returns the current interrupt polarity\n
-		* 			1=active high (default), 0=active low
+		This function returns the current interrupt polarity
+		:return:	1=active high (default)
+					0=active low
+		:rtypye: Integer
 		"""
 		self.status = 0
 		Temp = self.__i2cRead(self.address, GPIO_HV_MUX__CTRL, 1)
@@ -654,9 +691,9 @@ class VL53L1X(object):
 
 	def StartRanging(self):
 		"""
-		* @brief This function starts the ranging distance operation\n
-		* The ranging operation is continuous. The clear interrupt has to be done after each get data to allow the interrupt to raise when the next data is ready\n
-		* 1=active high (default), 0=active low, use SetInterruptPolarity() to change the interrupt polarity if required.
+		This function starts the ranging distance operation
+		The ranging operation is continuous. The clear interrupt has to be done after each get data to allow the interrupt to raise when the next data is ready
+		1=active high (default), 0=active low, use SetInterruptPolarity() to change the interrupt polarity if required.
 		"""
 		self.status = 0
 		self.status = self.__i2cWrite(self.address, SYSTEM__MODE_START, 0x40, 1)	#  Enable VL53L1X
@@ -666,7 +703,7 @@ class VL53L1X(object):
 
 	def StopRanging(self):
 		"""
-		* @brief This function stops the ranging.
+		This function stops the ranging.
 		"""
 		self.status = 0
 		self.status = self.__i2cWrite(self.address, SYSTEM__MODE_START, 0x00, 1)	#  Disable VL53L1X
@@ -676,8 +713,9 @@ class VL53L1X(object):
 
 	def CheckForDataReady(self):
 		"""
-		* @brief This function checks if the new ranging data is available by polling the dedicated register.
-		* @param : isDataReady==0 -> not ready isDataReady==1 -> ready
+		This function checks if the new ranging data is available by polling the dedicated register.
+		:return isDataReady:	0 -> not ready
+								1 -> ready
 		"""
 		self.status = 0
 
@@ -696,8 +734,8 @@ class VL53L1X(object):
 
 	def SetTimingBudgetInMs(self, TimingBudgetInMs):
 		"""
-		* @brief This function programs the timing budget in ms.
-		* Predefined values = 15, 20, 33, 50, 100(default), 200, 500.
+		This function programs the timing budget in ms.
+		:param TimingBudgetInMs: Predefined values = 15, 20, 33, 50, 100(default), 200, 500.
 		"""
 		self.status = 0
 
@@ -756,7 +794,7 @@ class VL53L1X(object):
 
 	def GetTimingBudgetInMs(self):
 		"""
-		* @brief This function returns the current timing budget in ms.
+		This function returns the current timing budget in ms.
 		"""
 		self.status = 0
 
@@ -786,9 +824,9 @@ class VL53L1X(object):
 
 	def SetDistanceMode(self, DM):
 		"""
-		* @brief This function programs the distance mode (1=short, 2=long(default)).
-		* Short mode max distance is limited to 1.3 m but better ambient immunity.\n
-		* Long mode can range up to 4 m in the dark with 200 ms timing budget.
+		This function programs the distance mode (1=short, 2=long(default)).
+		:param DM:	1- Short mode max distance is limited to 1.3 m but better ambient immunity.
+					2- Long mode can range up to 4 m in the dark with 200 ms timing budget (default).
 		"""
 		self.status = 0
 
@@ -817,7 +855,9 @@ class VL53L1X(object):
 
 	def GetDistanceMode(self):
 		"""
-		* @brief This function returns the current distance mode (1=short, 2=long).
+		This function returns the current distance mode (1=short, 2=long).
+		:return:	1- Short mode max distance is limited to 1.3 m but better ambient immunity.
+					2- Long mode can range up to 4 m in the dark with 200 ms timing budget (default).
 		"""
 		self.status = 0
 
@@ -831,9 +871,9 @@ class VL53L1X(object):
 
 	def SetInterMeasurementInMs(self, InterMeasMs):
 		"""
-		* @brief This function programs the Intermeasurement period in ms\n
-		* Intermeasurement period must be >/= timing budget. This condition is not checked by the API,
-		* the customer has the duty to check the condition. Default = 100 ms
+		This function programs the Intermeasurement period in ms.
+		:param InterMeasMs:	Intermeasurement period must be >/= timing budget. This condition is not checked by the API,
+							the customer has the duty to check the condition. Default = 100 ms
 		"""
 		self.status = 0
 
@@ -848,7 +888,9 @@ class VL53L1X(object):
 
 	def GetInterMeasurementInMs(self):
 		"""
-		* @brief This function returns the Intermeasurement period in ms.
+		This function returns the Intermeasurement period in ms.
+		:return:	Intermeasurement period in ms
+		:rtype:		Integer
 		"""
 		tmp = 0
 		ClockPLL = 0
@@ -864,7 +906,10 @@ class VL53L1X(object):
 
 	def BootState(self):
 		"""
-		* @brief This function returns the boot state of the device (1:booted, 0:not booted)
+		This function returns the boot state of the device (1:booted, 0:not booted)
+		:return:	1- booted
+					0- not booted
+		:rtype:		Integer
 		"""
 		self.status = 0
 		state = 0
@@ -876,7 +921,9 @@ class VL53L1X(object):
 
 	def GetSensorId(self):
 		"""
-		* @brief This function returns the sensor id, sensor Id must be 0xEEAC
+		This function returns the sensor id, sensor Id must be 0xEEAC
+		:return:	Sensor ID
+		:rtype:		Integer
 		"""
 		self.status = 0
 		sensorId = 0
@@ -888,7 +935,9 @@ class VL53L1X(object):
 
 	def _GetDistance_(self):
 		"""
-		* @brief This function returns the distance measured by the sensor in mm
+		This function returns the distance measured by the sensor in mm
+		:return:	Distance measured by the sensor in mm
+		:rtype:		Integer
 		"""
 		self.status = 0
 		distance = self.__i2cRead(self.address,
@@ -899,8 +948,8 @@ class VL53L1X(object):
 
 	def GetSignalPerSpad(self):
 		"""
-		* @brief This function returns the returned signal per SPAD in kcps/SPAD.
-		* With kcps stands for Kilo Count Per Second
+		This function returns the returned signal per SPAD in kcps/SPAD (kcps stands for Kilo Count Per Second).
+		:return:	Signal per SPAD (Kilo Count Per Second/SPAD).
 		"""
 		self.status = 0
 		SpNb=1
@@ -916,7 +965,8 @@ class VL53L1X(object):
 
 	def GetAmbientPerSpad(self):
 		"""
-		* @brief This function returns the ambient per SPAD in kcps/SPAD
+		This function returns the ambient per SPAD in kcps/SPAD
+		:return:	Ambient per SPAD
 		"""
 		self.status = 0
 		SpNb=1
@@ -930,7 +980,8 @@ class VL53L1X(object):
 
 	def GetSignalRate(self):
 		"""
-		* @brief This function returns the returned signal in kcps.
+		This function returns the returned signal in kcps.
+		:return:	signal in kcps
 		"""
 		self.status = 0
 		tmp = self.__i2cRead(self.address,
@@ -942,7 +993,8 @@ class VL53L1X(object):
 
 	def GetSpadNb(self):
 		"""
-		* @brief This function returns the current number of enabled SPADs
+		This function returns the current number of enabled SPADs
+		:return:	Number of enabled SPADs
 		"""
 		self.status = 0
 		tmp = self.__i2cRead(self.address,
@@ -954,7 +1006,8 @@ class VL53L1X(object):
 
 	def GetAmbientRate(self):
 		"""
-		* @brief This function returns the ambient rate in kcps
+		This function returns the ambient rate in kcps
+		:return:	Ambient rate in kcps
 		"""
 		self.status = 0
 		tmp = self.__i2cRead(self.address, RESULT__AMBIENT_COUNT_RATE_MCPS_SD, 2)
@@ -965,8 +1018,12 @@ class VL53L1X(object):
 
 	def GetRangeStatus(self):
 		"""
-		* @brief This function returns the ranging status error \n
-		* (0:no error, 1:sigma failed, 2:signal failed, ..., 7:wrap-around)
+		This function returns the ranging status error
+		:return:	Ranging status error
+						0- no error
+						1- sigma failed
+						2- signal failed
+						7- wrap-around
 		"""
 		self.status = 0
 		RgSt = self.__i2cRead(self.address, VL53L1_RESULT__RANGE_STATUS, 1)
@@ -996,8 +1053,8 @@ class VL53L1X(object):
 
 	def SetOffset(self, OffsetValue):
 		"""
-		* @brief This function programs the offset correction in mm
-		* @param OffsetValue:the offset correction value to program in mm
+		This function programs the offset correction in mm
+		:param OffsetValue:	The offset correction value to program in mm
 		"""
 		self.status = 0
 		Temp = OffsetValue*4
@@ -1012,7 +1069,9 @@ class VL53L1X(object):
 
 	def GetOffset(self):
 		"""
-		* @brief This function returns the programmed offset correction value in mm
+		This function returns the programmed offset correction value in mm
+		:return:	Offset correction value in mm
+		:rtype:		Integer
 		"""
 		self.status = 0
 		Temp = self.__i2cRead(self.address,ALGO__PART_TO_PART_RANGE_OFFSET_MM, 2)
@@ -1025,10 +1084,9 @@ class VL53L1X(object):
 
 	def SetXtalk(self, XtalkValue):
 		"""
-		* @brief This function programs the xtalk correction value in cps (Count Per Second).\n
-		* This is the number of photons reflected back from the cover glass in cps.
-
-		XTalkValue in count per second to avoid float type
+		This function programs the xtalk correction value in cps (Count Per Second).
+		This is the number of photons reflected back from the cover glass in cps.
+		:param XTalkValue:	 xtalk correction value in count per second to avoid float type
 		"""
 		self.status = 0
 		
@@ -1038,18 +1096,19 @@ class VL53L1X(object):
 		self.status = self.__i2cWrite(self.address, ALGO__CROSSTALK_COMPENSATION_Y_PLANE_GRADIENT_KCPS,
 				0x0000, 2)
 		self.status = self.__i2cWrite(self.address, ALGO__CROSSTALK_COMPENSATION_PLANE_OFFSET_KCPS,
-				(XtalkValue << 9)/1000, 2) # * << 9 (7.9 format) and /1000 to convert cps to kpcs
+				(XtalkValue << 9)/1000, 2) # << 9 (7.9 format) and /1000 to convert cps to kpcs
 		
 		return self.status
 
 
 	def GetXtalk(self):
 		"""
-		* @brief This function returns the current programmed xtalk correction value in cps
+		This function returns the current programmed xtalk correction value in cps
+		:return:	xtalk correction value in cps
 		"""
 		self.status = 0
 		tmp = self.__i2cRead(self.address,ALGO__CROSSTALK_COMPENSATION_PLANE_OFFSET_KCPS, 2)
-		xtalk = (tmp*1000) >> 9 # * 1000 to convert kcps to cps and >> 9 (7.9 format)
+		xtalk = (tmp*1000) >> 9 # 1000 to convert kcps to cps and >> 9 (7.9 format)
 
 		return xtalk
 
@@ -1059,17 +1118,22 @@ class VL53L1X(object):
 					ThreshHigh, Window,
 					IntOnNoTarget):
 		"""
-		* @brief This function programs the threshold detection mode\n
-		* Example:\n
-		* self.SetDistanceThreshold(dev,100,300,0,1): Below 100 \n
-		* self.SetDistanceThreshold(dev,100,300,1,1): Above 300 \n
-		* self.SetDistanceThreshold(dev,100,300,2,1): Out of window \n
-		* self.SetDistanceThreshold(dev,100,300,3,1): In window \n
-		* @param	dev : device address
-		* @param	ThreshLow(in mm) : the threshold under which one the device raises an interrupt if Window = 0
-		* @param 	ThreshHigh(in mm) : the threshold above which one the device raises an interrupt if Window = 1
-		* @param	Window detection mode : 0=below, 1=above, 2=out, 3=in
-		* @param	IntOnNoTarget = 1 (No longer used - just use 1)
+		This function programs the threshold detection mode
+		Example:
+			* self.SetDistanceThreshold(100,300,0,1): Below 100 
+			* self.SetDistanceThreshold(100,300,1,1): Above 300 
+			* self.SetDistanceThreshold(100,300,2,1): Out of window 
+			* self.SetDistanceThreshold(100,300,3,1): In window 
+
+		:param ThreshLow (in mm):	The threshold under which one the device raises an interrupt if Window = 0
+		:param ThreshHigh (in mm):	The threshold above which one the device raises an interrupt if Window = 1
+		:param Window:				Window detection mode:
+										0- below
+										1- above
+										2- out
+										3- in
+		:param IntOnNoTarget:		= 1
+									(*No longer used - just set to 1*)
 		"""
 		self.status = 0
 		Temp = 0
@@ -1091,7 +1155,13 @@ class VL53L1X(object):
 
 	def GetDistanceThresholdWindow(self):
 		"""
-		* @brief This function returns the window detection mode (0=below 1=above 2=out 3=in)
+		This function returns the window detection mode (0=below 1=above 2=out 3=in)
+		:return:	Window detection mode:
+						0- below
+						1- above
+						2- out
+						3- in
+		:rtype:		Integer
 		"""
 		self.status = 0
 		tmp = self.__i2cRead(self.address,SYSTEM__INTERRUPT_CONFIG_GPIO, 1)
@@ -1102,7 +1172,9 @@ class VL53L1X(object):
 
 	def GetDistanceThresholdLow(self):
 		"""
-		* @brief This function returns the low threshold in mm
+		This function returns the low threshold in mm
+		:return:	Low threshold in mm
+		:rtype:		Integer		
 		"""
 		self.status = 0
 		low = self.__i2cRead(self.address,SYSTEM__THRESH_LOW, 2)
@@ -1112,7 +1184,9 @@ class VL53L1X(object):
 
 	def GetDistanceThresholdHigh(self):
 		"""
-		* @brief This function returns the high threshold in mm
+		This function returns the high threshold in mm
+		:return:	High threshold in mm
+		:rtype:		Integer
 		"""
 		self.status = 0
 		high = self.__i2cRead(self.address,SYSTEM__THRESH_HIGH, 2)
@@ -1122,10 +1196,11 @@ class VL53L1X(object):
 
 	def SetROI(self, X, Y):
 		"""
-		* @brief This function programs the ROI (Region of Interest)\n
-		* The ROI position is centered, only the ROI size can be reprogrammed.\n
-		* The smallest acceptable ROI size = 4\n
-		* @param X:ROI Width Y=ROI Height
+		This function programs the ROI (Region of Interest)
+		The ROI position is centered, only the ROI size can be reprogrammed.
+		The smallest acceptable ROI size = 4
+		:param X:	ROI Width
+		:param Y:	ROI Height
 		"""
 		self.status = 0
 		OpticalCenter =self.__i2cRead(self.address, VL53L1_ROI_CONFIG__MODE_ROI_CENTRE_SPAD, 1)
@@ -1145,19 +1220,22 @@ class VL53L1X(object):
 
 	def GetROI_XY(self):
 		"""
-		*@brief This function returns width X and height Y
+		This function returns width X and height Y
+		:return:	Region of Interest Width (X) and Height (Y)
+		:rtype:		List
 		"""
 		self.status = 0
 		tmp = self.__i2cRead(self.address,ROI_CONFIG__USER_ROI_REQUESTED_GLOBAL_XY_SIZE, 1)
 		ROI_X = (tmp & 0x0F) + 1
 		ROI_Y = ((tmp & 0xF0) >> 4) + 1
 
-		return ROI_X, ROI_Y
+		return [ROI_X, ROI_Y]
 
 
 	def SetSignalThreshold(self, Signal):
 		"""
-		* @brief This function programs a new signal threshold in kcps (default=1024 kcps\n
+		This function programs a new signal threshold in kcps (default=1024 kcps)
+		:param Signal:	Signal threshold in kcps (default=1024 kcps)
 		"""
 		self.status = 0
 
@@ -1168,7 +1246,8 @@ class VL53L1X(object):
 
 	def GetSignalThreshold(self):
 		"""
-		* @brief This function returns the current signal threshold in kcps
+		This function returns the current signal threshold in kcps
+		:return:	Signal threshold in kcps
 		"""
 		self.status = 0
 		tmp = self.__i2cRead(self.address,
@@ -1179,7 +1258,8 @@ class VL53L1X(object):
 
 	def SetSigmaThreshold(self, Sigma):
 		"""
-		* @brief This function programs a new sigma threshold in mm (default=15 mm)
+		This function programs a new sigma threshold in mm (default=15 mm)
+		:param Sigma:	Sigma threshold in mm (default=15 mm)
 		"""
 		self.status = 0
 
@@ -1194,7 +1274,9 @@ class VL53L1X(object):
 
 	def GetSigmaThreshold(self):
 		"""
-		* @brief This function returns the current sigma threshold in mm
+		This function returns the current sigma threshold in mm
+		:return:	Sigma threshold in mm
+		:rtype:		Integer
 		"""
 		self.status = 0
 		
@@ -1206,9 +1288,9 @@ class VL53L1X(object):
 
 	def StartTemperatureUpdate(self):
 		"""
-		* @brief This function performs the temperature calibration.
-		* It is recommended to call this function any time the temperature might have changed by more than 8 deg C
-		* without sensor ranging activity for an extended period.
+		This function performs the temperature calibration.
+		It is recommended to call this function any time the temperature might have changed by more than 8 deg C
+		without sensor ranging activity for an extended period.
 		"""
 		self.status = 0
 		tmp=0
@@ -1235,12 +1317,13 @@ class VL53L1X(object):
 
 	def CalibrateOffset(self, TargetDistInMm):
 		"""
-		* @brief This function performs the offset calibration.\n
-		* The function returns the offset value found and programs the offset compensation into the device.
-		* @param TargetDistInMm target distance in mm, ST recommended 100 mm
-		* Target reflectance = grey17%
-		* @return 0:success, !=0: failed
-		* @return offset pointer contains the offset found in mm
+		This function performs the offset calibration.
+		The function returns the offset value found and programs the offset compensation into the device.
+		:param TargetDistInMm:	Target distance in mm, ST recommended 100 mm
+								Target reflectance = grey17%
+		:return status:	  0- success
+						!=0- failed
+		#?	:return offset:	offset found in mm
 		"""
 		tmp = 0
 		AverageDistance = 0
@@ -1269,15 +1352,16 @@ class VL53L1X(object):
 
 	def CalibrateXtalk(self, TargetDistInMm):
 		"""
-		* @brief This function performs the xtalk calibration.\n
-		* The function returns the xtalk value found and programs the xtalk compensation to the device
-		* @param TargetDistInMm target distance in mm\n
-		* The target distance : the distance where the sensor start to "under range"\n
-		* due to the influence of the photons reflected back from the cover glass becoming strong\n
-		* It's also called inflection point\n
-		* Target reflectance = grey 17%
-		* @return 0: success, !=0: failed
-		* @return xtalk pointer contains the xtalk value found in cps (number of photons in count per second)
+		This function performs the xtalk calibration.
+		The function returns the xtalk value found and programs the xtalk compensation to the device
+		:param TargetDistInMm:	Target distance in mm
+								The target distance : the distance where the sensor start to "under range"
+								due to the influence of the photons reflected back from the cover glass becoming strong
+								It's also called inflection point
+									Target reflectance = grey 17%
+		:return status:	  0- success
+						!=0- failed
+		#?	:return xtalk:	xtalk value found in cps (number of photons in count per second)
 		"""
 		tmp= 0
 		AverageSignalRate = 0
@@ -1323,7 +1407,7 @@ class VL53L1X(object):
 		"""
 		self.status = VL53L1_ERROR_NONE
 
-		# *ptick_count_ms = timeGetTime()
+		# ptick_count_ms = timeGetTime()
 		ptick_count_ms = 0
 
 		return ptick_count_ms
@@ -1341,14 +1425,7 @@ class VL53L1X(object):
 
 	def __WaitValueMaskEx(self, timeout_ms, index, value, mask, poll_delay_ms):
 		"""
-		* Platform implementation of WaitValueMaskEx V2WReg script command
-		*
-		* WaitValueMaskEx(
-		* 		duration_ms,
-		* 		index,
-		* 		value,
-		* 		mask,
-		* 		poll_delay_ms)
+		Platform implementation of WaitValueMaskEx V2WReg script command
 		"""
 
 		self.status	 = VL53L1_ERROR_NONE
