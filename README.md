@@ -6,8 +6,8 @@ Qwiic_VL53L1X_Py
    <img src="https://www.python.org/static/community_logos/python-logo-master-v3-TM.png"  width=240>   
 </p>
 <p align="center">
-	<a href="https://pypi.org/project/sparkfun-qwiic-VL53L1X/" alt="Package">
-		<img src="https://img.shields.io/pypi/pyversions/sparkfun_qwiic_VL53L1X.svg" /></a>
+	<a href="https://pypi.org/project/sparkfun-qwiic-vl53l1x/" alt="Package">
+		<img src="https://img.shields.io/pypi/pyversions/sparkfun_qwiic_vl53l1x.svg" /></a>
 	<a href="https://github.com/sparkfun/Qwiic_VL53L1X_Py/issues" alt="Issues">
 		<img src="https://img.shields.io/github/issues/sparkfun/Qwiic_VL53L1X_Py.svg" /></a>
 	<a href="https://qwiic-VL53L1X-py.readthedocs.io/en/latest/?" alt="Documentation">
@@ -54,16 +54,16 @@ Installation
 -------------
 
 ### PyPi Installation
-This repository is hosted on PyPi as the [sparkfun-qwiic-VL53L1X](https://pypi.org/project/sparkfun-qwiic-VL53L1X/) package. On systems that support PyPi installation via pip, this library is installed using the following commands
+This repository is hosted on PyPi as the [sparkfun-qwiic-vl53l1x](https://pypi.org/project/sparkfun-qwiic-vl53l1x/) package. On systems that support PyPi installation via pip, this library is installed using the following commands
 
 For all users (note: the user must have sudo privileges):
 ```sh
-sudo pip install sparkfun-qwiic-VL53L1X
+sudo pip install sparkfun-qwiic-vl53l1x
 ```
 For the current user:
 
 ```sh
-pip install sparkfun-qwiic-VL53L1X
+pip install sparkfun-qwiic-vl53l1x
 ```
 
 ### Local Installation
@@ -81,7 +81,7 @@ python setup.py sdist
 A package file is built and placed in a subdirectory called dist. This package file can be installed using pip.
 ```sh
 cd dist
-pip install sparkfun_qwiic_VL53L1X-<version>.tar.gz
+pip install sparkfun_qwiic_vl53l1x-<version>.tar.gz
   
 ```
 Example Use
@@ -89,7 +89,7 @@ Example Use
 See the examples directory for more detailed use examples.
 
 ```python
-import qwiic_VL53L1X
+import qwiic_vl53l1x
 import time
 import math
 import sys
@@ -97,7 +97,7 @@ import sys
 def runExample():
 
 	print("\nSparkFun VL53L1X Example 1\n")
-	mySensor = qwiic_VL53L1X.QwiicVL53L1X()
+	mySensor = qwiic_vl53l1x.QwiicVL53L1X()
 
 	if mySensor.isConnected() == False:
 		print("The Qwiic VL53L1X device isn't connected to the system. Please check your connection", \
