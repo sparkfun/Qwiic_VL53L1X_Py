@@ -1,7 +1,0 @@
-qwiic_vl53l1x.py
-setup.py
-sparkfun_qwiic_vl53l1x.egg-info/PKG-INFO
-sparkfun_qwiic_vl53l1x.egg-info/SOURCES.txt
-sparkfun_qwiic_vl53l1x.egg-info/dependency_links.txt
-sparkfun_qwiic_vl53l1x.egg-info/requires.txt
-sparkfun_qwiic_vl53l1x.egg-info/top_level.txt
