@@ -454,7 +454,7 @@ VL53L1_ERROR_PLATFORM_SPECIFIC_START =										-60
 # Classes ------------------------------------------------
 # 	Class representing a VL53L1 sensor component
 ###############################################################################
-class VL53L1X(object):
+class QwiicVL53L1X(object):
 
 	"""
 	SparkFunVL53L1X

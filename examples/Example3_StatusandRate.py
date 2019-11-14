@@ -14,11 +14,11 @@
 	Are you getting weird readings? Be sure the vacuum tape has been removed from the sensor.
 """
 
-from qwiic_VL53L1X import VL53L1X
-import time, statistics
+from qwiic_VL53L1X import QwiicVL53L1X
+import time statistics
 
 print("VL53L1X Qwiic Test\n")
-ToF = VL53L1X()
+ToF = QwiicVL53L1X()
 
 if (ToF.SensorInit() == None):					 # Begin returns 0 on a good init
 	print("Sensor online!\n")
