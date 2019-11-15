@@ -882,7 +882,7 @@ class QwiicVL53L1X(object):
 		ClockPLL = ClockPLL&0x3FF
 
 		self.status = self.__i2cWrite(self.address, VL53L1_SYSTEM__INTERMEASUREMENT_PERIOD,
-				(ClockPLL * InterMeasMs * 1.075), 4)
+				int(ClockPLL * InterMeasMs * 1.075), 4)
 
 		return self.status
 
