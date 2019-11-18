@@ -619,7 +619,7 @@ class QwiicVL53L1X(object):
 		"""
 		self.status = 0
 
-		self.status = self.__i2cWrite(self.address, VL53L1_I2C_SLAVE__DEVICE_ADDRESS, new_address >> 1, 1)
+		self.status = self.__i2cWrite(self.address, VL53L1_I2C_SLAVE__DEVICE_ADDRESS, new_address, 1)
 		self.address = new_address
 		
 		return self.status
