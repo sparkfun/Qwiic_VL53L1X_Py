@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'sparkfun_pi_servo_hat'
+project = 'qwiic_VL53L1X'
 copyright = '2019, SparkFun Electronics'
 author = 'SparkFun Electronics'
 
