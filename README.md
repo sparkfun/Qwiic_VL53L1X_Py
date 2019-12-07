@@ -108,11 +108,11 @@ def runExample():
   
 	while True:
         try:
-            ToF.StartRanging()						 # Write configuration bytes to initiate measurement
+            mySensor.StartRanging()						 # Write configuration bytes to initiate measurement
             time.sleep(.005)
-            distance = ToF.GetDistance()	 # Get the result of the measurement from the sensor
+            distance = mySensor.GetDistance()	 # Get the result of the measurement from the sensor
             time.sleep(.005)
-            ToF.StopRanging()
+            mySensor.StopRanging()
 
             print("Distance(mm): %s" % distance)
 
