@@ -91,7 +91,6 @@ See the examples directory for more detailed use examples.
 ```python
 import qwiic_vl53l1x
 import time
-import math
 import sys
 
 def runExample():
