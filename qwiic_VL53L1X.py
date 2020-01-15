@@ -632,14 +632,19 @@ class QwiicVL53L1X(object):
 		"""
 		self.status = 0
 		Addr = 0x00
-		tmp=0
+		tmp = 0
+		timeout = 0
 
 		for Addr in range(0x2D, 0x87 + 1):
 			self.status = self.__i2cWrite(self.address, Addr, VL51L1X_DEFAULT_CONFIGURATION[Addr - 0x2D], 1)
 		
 		self.status = self.StartRanging()
-		while(tmp==0):
+		while(tmp == 0):
 				tmp = self.CheckForDataReady()
+				timeout = timeout + 1
+				if (timeout > 50):
+					self.status = VL53L1_ERROR_TIME_OUT
+					return self.status
 		
 		tmp = 0
 		self.status = self.ClearInterrupt()
