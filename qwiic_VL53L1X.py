@@ -1197,7 +1197,7 @@ class QwiicVL53L1X(object):
 
 	def SetROI(self, X, Y, OpticalCenter = 199):
 		"""
-		This function programs the ROI (Region of Interest). The height and width of the ROI (X, Y) are set in SPADs; the smallest acceptable ROI size = 4 (2 x 2?). The optical center is set based on table below.
+		This function programs the ROI (Region of Interest). The height and width of the ROI (X, Y) are set in SPADs; the smallest acceptable ROI size = 4 (4 x 4). The optical center is set based on table below.
 		To set the center, use the pad that is to the right and above (i.e. upper right of) the exact center of the region you'd like to measure as your optical center.
 
 		Table of Optical Centers:
