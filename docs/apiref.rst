@@ -1,5 +1,5 @@
 API Reference
 ==============
 
-.. automodule:: qwiic_VL53L1X
+.. automodule:: qwiic_vl53l1x
    :members:
