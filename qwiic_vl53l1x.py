@@ -459,15 +459,18 @@ class QwiicVL53L1X(object):
 	"""
 	SparkFunVL53L1X
 	Initialise the VL53L1X chip at ``address`` with ``i2c_driver``.
-	:param address:		The I2C address to use for the device.
-						If not provided, the default address is
-						used.
-	:param i2c_driver:	An existing i2c driver object. If not
-						provided a driver object is created.
+
+	:param address: The I2C address to use for the device. 
 	
-	:return:			Constructor Initialization
-						True-	Successful
-						False-	Issue loading I2C driver
+		* If not provided, the default address is used.
+	:param i2c_driver: An existing i2c driver object.
+	
+		* If not provided a driver object is created.
+	
+	:return:			**Constructor Initialization** -
+
+						* True-	Successful
+						* False-	Issue loading I2C driver
 	:rtype:				Bool
 	"""
 
@@ -552,6 +555,7 @@ class QwiicVL53L1X(object):
 	def GetDistance(self):
 		"""
 		Get ranging result and only that
+
 		:return pRange_mm:	Range distance in mm
 		:rtype: 			Integer
 		"""
@@ -561,6 +565,7 @@ class QwiicVL53L1X(object):
 	def InitSensor(self, address):
 		"""
 		Initialize the sensor with default values
+
 		:param address:	Device address
 		:return:	0 on Success
 		"""
@@ -599,6 +604,7 @@ class QwiicVL53L1X(object):
 	def GetSWVersion(self):
 		"""
 		This function returns the SW driver version
+
 		:return:	[major, minor, build, revision] numbers
 		:rtype:		List
 		"""
@@ -614,7 +620,8 @@ class QwiicVL53L1X(object):
 
 	def SetI2CAddress(self, new_address):
 		"""
-		This function sets the sensor I2C address used in case multiple devices application, default address 0x29 (0x52 >> 1)
+		This function sets the sensor I2C address used in case multiple devices application, default address **0x29** (0x52 >> 1)
+
 		:param new_address: I2C address to change device to
 		"""
 		self.status = 0
@@ -627,8 +634,9 @@ class QwiicVL53L1X(object):
 	def SensorInit(self):
 		"""
 		This function loads the 135 bytes default values to initialize the sensor.
-		:return:	0:success
-					!= 0:failed
+
+		:return:	* 0:success
+					* != 0:failed
 		"""
 		self.status = 0
 		Addr = 0x00
@@ -668,8 +676,9 @@ class QwiicVL53L1X(object):
 	def SetInterruptPolarity(self, NewPolarity):
 		"""
 		This function programs the interrupt polarity
-		:param NewPolarity:	1=active high (default)
-							0=active low
+
+		:param NewPolarity:	* 1 = active high (**default**)
+							* 0 = active low
 		"""
 		self.status = 0
 		Temp = self.__i2cRead(self.address, GPIO_HV_MUX__CTRL, 1)
@@ -683,8 +692,9 @@ class QwiicVL53L1X(object):
 	def GetInterruptPolarity(self):
 		"""
 		This function returns the current interrupt polarity
-		:return:	1=active high (default)
-					0=active low
+
+		:return:	* 1 = active high (**default**)
+					* 0 = active low
 		:rtypye: Integer
 		"""
 		self.status = 0
@@ -699,7 +709,7 @@ class QwiicVL53L1X(object):
 		"""
 		This function starts the ranging distance operation
 		The ranging operation is continuous. The clear interrupt has to be done after each get data to allow the interrupt to raise when the next data is ready
-		1=active high (default), 0=active low, use SetInterruptPolarity() to change the interrupt polarity if required.
+		1=active high (**default**), 0=active low, use SetInterruptPolarity() to change the interrupt polarity if required.
 		"""
 		self.status = 0
 		self.status = self.__i2cWrite(self.address, SYSTEM__MODE_START, 0x40, 1)	#  Enable VL53L1X
@@ -720,8 +730,9 @@ class QwiicVL53L1X(object):
 	def CheckForDataReady(self):
 		"""
 		This function checks if the new ranging data is available by polling the dedicated register.
-		:return isDataReady:	0 -> not ready
-								1 -> ready
+
+		:return isDataReady:	* 0 -> not ready
+								* 1 -> ready
 		"""
 		self.status = 0
 
@@ -741,7 +752,8 @@ class QwiicVL53L1X(object):
 	def SetTimingBudgetInMs(self, TimingBudgetInMs):
 		"""
 		This function programs the timing budget in ms.
-		:param TimingBudgetInMs: Predefined values = 15, 20, 33, 50, 100(default), 200, 500.
+
+		:param TimingBudgetInMs: Predefined values = 15, 20, 33, 50, 100 (**default**), 200, 500.
 		"""
 		self.status = 0
 
@@ -831,8 +843,9 @@ class QwiicVL53L1X(object):
 	def SetDistanceMode(self, DM):
 		"""
 		This function programs the distance mode (1=short, 2=long(default)).
-		:param DM:	1- Short mode max distance is limited to 1.3 m but better ambient immunity.
-					2- Long mode can range up to 4 m in the dark with 200 ms timing budget (default).
+
+		:param DM:	* 1- Short mode max distance is limited to 1.3 m but better ambient immunity.
+					* 2- Long mode can range up to 4 m in the dark with 200 ms timing budget (**default**).
 		"""
 		self.status = 0
 
@@ -862,8 +875,9 @@ class QwiicVL53L1X(object):
 	def GetDistanceMode(self):
 		"""
 		This function returns the current distance mode (1=short, 2=long).
-		:return:	1- Short mode max distance is limited to 1.3 m but better ambient immunity.
-					2- Long mode can range up to 4 m in the dark with 200 ms timing budget (default).
+
+		:return:	* 1- Short mode max distance is limited to 1.3 m but better ambient immunity.
+					* 2- Long mode can range up to 4 m in the dark with 200 ms timing budget (**default**).
 		"""
 		self.status = 0
 
@@ -878,8 +892,9 @@ class QwiicVL53L1X(object):
 	def SetInterMeasurementInMs(self, InterMeasMs):
 		"""
 		This function programs the Intermeasurement period in ms.
+
 		:param InterMeasMs:	Intermeasurement period must be >/= timing budget. This condition is not checked by the API,
-							the customer has the duty to check the condition. Default = 100 ms
+							the customer has the duty to check the condition. **Default = 100 ms**
 		"""
 		self.status = 0
 
@@ -895,6 +910,7 @@ class QwiicVL53L1X(object):
 	def GetInterMeasurementInMs(self):
 		"""
 		This function returns the Intermeasurement period in ms.
+
 		:return:	Intermeasurement period in ms
 		:rtype:		Integer
 		"""
@@ -913,8 +929,9 @@ class QwiicVL53L1X(object):
 	def BootState(self):
 		"""
 		This function returns the boot state of the device (1:booted, 0:not booted)
-		:return:	1- booted
-					0- not booted
+		
+		:return: 	* 1- booted
+			* 0- not booted
 		:rtype:		Integer
 		"""
 		self.status = 0
@@ -928,6 +945,7 @@ class QwiicVL53L1X(object):
 	def GetSensorId(self):
 		"""
 		This function returns the sensor id, sensor Id must be 0xEEAC
+
 		:return:	Sensor ID
 		:rtype:		Integer
 		"""
@@ -942,6 +960,7 @@ class QwiicVL53L1X(object):
 	def _GetDistance_(self):
 		"""
 		This function returns the distance measured by the sensor in mm
+
 		:return:	Distance measured by the sensor in mm
 		:rtype:		Integer
 		"""
@@ -955,6 +974,7 @@ class QwiicVL53L1X(object):
 	def GetSignalPerSpad(self):
 		"""
 		This function returns the returned signal per SPAD in kcps/SPAD (kcps stands for Kilo Count Per Second).
+
 		:return:	Signal per SPAD (Kilo Count Per Second/SPAD).
 		"""
 		self.status = 0
@@ -972,6 +992,7 @@ class QwiicVL53L1X(object):
 	def GetAmbientPerSpad(self):
 		"""
 		This function returns the ambient per SPAD in kcps/SPAD
+
 		:return:	Ambient per SPAD
 		"""
 		self.status = 0
@@ -987,6 +1008,7 @@ class QwiicVL53L1X(object):
 	def GetSignalRate(self):
 		"""
 		This function returns the returned signal in kcps.
+
 		:return:	signal in kcps
 		"""
 		self.status = 0
@@ -1000,6 +1022,7 @@ class QwiicVL53L1X(object):
 	def GetSpadNb(self):
 		"""
 		This function returns the current number of enabled SPADs
+
 		:return:	Number of enabled SPADs
 		"""
 		self.status = 0
@@ -1013,6 +1036,7 @@ class QwiicVL53L1X(object):
 	def GetAmbientRate(self):
 		"""
 		This function returns the ambient rate in kcps
+
 		:return:	Ambient rate in kcps
 		"""
 		self.status = 0
@@ -1025,11 +1049,13 @@ class QwiicVL53L1X(object):
 	def GetRangeStatus(self):
 		"""
 		This function returns the ranging status error
+
 		:return:	Ranging status error
-						0- no error
-						1- sigma failed
-						2- signal failed
-						7- wrap-around
+
+						* 0- no error
+						* 1- sigma failed
+						* 2- signal failed
+						* 7- wrap-around
 		"""
 		self.status = 0
 		RgSt = self.__i2cRead(self.address, VL53L1_RESULT__RANGE_STATUS, 1)
@@ -1060,6 +1086,7 @@ class QwiicVL53L1X(object):
 	def SetOffset(self, OffsetValue):
 		"""
 		This function programs the offset correction in mm
+
 		:param OffsetValue:	The offset correction value to program in mm
 		"""
 		self.status = 0
@@ -1076,6 +1103,7 @@ class QwiicVL53L1X(object):
 	def GetOffset(self):
 		"""
 		This function returns the programmed offset correction value in mm
+
 		:return:	Offset correction value in mm
 		:rtype:		Integer
 		"""
@@ -1092,6 +1120,7 @@ class QwiicVL53L1X(object):
 		"""
 		This function programs the xtalk correction value in cps (Count Per Second).
 		This is the number of photons reflected back from the cover glass in cps.
+
 		:param XTalkValue:	 xtalk correction value in count per second to avoid float type
 		"""
 		self.status = 0
@@ -1110,6 +1139,7 @@ class QwiicVL53L1X(object):
 	def GetXtalk(self):
 		"""
 		This function returns the current programmed xtalk correction value in cps
+
 		:return:	xtalk correction value in cps
 		"""
 		self.status = 0
@@ -1131,13 +1161,14 @@ class QwiicVL53L1X(object):
 			* self.SetDistanceThreshold(100,300,2,1): Out of window 
 			* self.SetDistanceThreshold(100,300,3,1): In window 
 
-		:param ThreshLow (in mm):	The threshold under which one the device raises an interrupt if Window = 0
-		:param ThreshHigh (in mm):	The threshold above which one the device raises an interrupt if Window = 1
+		:param mm ThreshLow:	The threshold under which one the device raises an interrupt if Window = 0
+		:param mm ThreshHigh:	The threshold above which one the device raises an interrupt if Window = 1
 		:param Window:				Window detection mode:
-										0- below
-										1- above
-										2- out
-										3- in
+
+										* 0- below
+										* 1- above
+										* 2- out
+										* 3- in
 		:param IntOnNoTarget:		= 1
 									(*No longer used - just set to 1*)
 		"""
@@ -1162,11 +1193,13 @@ class QwiicVL53L1X(object):
 	def GetDistanceThresholdWindow(self):
 		"""
 		This function returns the window detection mode (0=below 1=above 2=out 3=in)
+		
 		:return:	Window detection mode:
-						0- below
-						1- above
-						2- out
-						3- in
+
+						* 0- below
+						* 1- above
+						* 2- out
+						* 3- in
 		:rtype:		Integer
 		"""
 		self.status = 0
@@ -1179,6 +1212,7 @@ class QwiicVL53L1X(object):
 	def GetDistanceThresholdLow(self):
 		"""
 		This function returns the low threshold in mm
+
 		:return:	Low threshold in mm
 		:rtype:		Integer		
 		"""
@@ -1191,6 +1225,7 @@ class QwiicVL53L1X(object):
 	def GetDistanceThresholdHigh(self):
 		"""
 		This function returns the high threshold in mm
+		
 		:return:	High threshold in mm
 		:rtype:		Integer
 		"""
@@ -1230,7 +1265,7 @@ class QwiicVL53L1X(object):
 		:param X:	ROI Width
 		:param Y:	ROI Height
 		:param OpticalCenter: The pad that is to the upper right of the exact center of the ROI (see table above).
-			Default = 199
+			**Default = 199**
 		"""
 		self.status = 0
 		# OpticalCenter =self.__i2cRead(self.address, VL53L1_ROI_CONFIG__MODE_ROI_CENTRE_SPAD, 1)
@@ -1251,6 +1286,7 @@ class QwiicVL53L1X(object):
 	def GetROI_XY(self):
 		"""
 		This function returns width X and height Y
+
 		:return:	Region of Interest Width (X) and Height (Y)
 		:rtype:		List
 		"""
@@ -1265,7 +1301,8 @@ class QwiicVL53L1X(object):
 	def SetSignalThreshold(self, Signal):
 		"""
 		This function programs a new signal threshold in kcps (default=1024 kcps)
-		:param Signal:	Signal threshold in kcps (default=1024 kcps)
+
+		:param Signal:	Signal threshold in kcps (**default=1024 kcps**)
 		"""
 		self.status = 0
 
@@ -1277,6 +1314,7 @@ class QwiicVL53L1X(object):
 	def GetSignalThreshold(self):
 		"""
 		This function returns the current signal threshold in kcps
+
 		:return:	Signal threshold in kcps
 		"""
 		self.status = 0
@@ -1289,7 +1327,8 @@ class QwiicVL53L1X(object):
 	def SetSigmaThreshold(self, Sigma):
 		"""
 		This function programs a new sigma threshold in mm (default=15 mm)
-		:param Sigma:	Sigma threshold in mm (default=15 mm)
+
+		:param Sigma:	Sigma threshold in mm (**default=15 mm**)
 		"""
 		self.status = 0
 
@@ -1305,6 +1344,7 @@ class QwiicVL53L1X(object):
 	def GetSigmaThreshold(self):
 		"""
 		This function returns the current sigma threshold in mm
+
 		:return:	Sigma threshold in mm
 		:rtype:		Integer
 		"""
@@ -1349,11 +1389,12 @@ class QwiicVL53L1X(object):
 		"""
 		This function performs the offset calibration.
 		The function returns the offset value found and programs the offset compensation into the device.
-		:param TargetDistInMm:	Target distance in mm, ST recommended 100 mm
-								Target reflectance = grey17%
-		:return status:	  0- success
-						!=0- failed
-		#?	:return offset:	offset found in mm
+		
+		:param TargetDistInMm: 	* Target distance in mm, ST recommended 100 mm
+								* Target reflectance = grey17%
+		:return status:	 * 0- success
+						* !=0- failed
+		:return offset:	offset found in mm #?
 		"""
 		tmp = 0
 		AverageDistance = 0
@@ -1384,14 +1425,14 @@ class QwiicVL53L1X(object):
 		"""
 		This function performs the xtalk calibration.
 		The function returns the xtalk value found and programs the xtalk compensation to the device
-		:param TargetDistInMm:	Target distance in mm
-								The target distance : the distance where the sensor start to "under range"
-								due to the influence of the photons reflected back from the cover glass becoming strong
-								It's also called inflection point
-									Target reflectance = grey 17%
-		:return status:	  0- success
-						!=0- failed
-		#?	:return xtalk:	xtalk value found in cps (number of photons in count per second)
+
+		:param TargetDistInMm: Target distance in mm
+
+								* The target distance : the distance where the sensor start to "under range" due to the influence of the photons reflected back from the cover glass becoming strong (also called the inflection point).
+									* Target reflectance = grey 17%
+		:return status:	* 0- success
+						* !=0- failed
+		:return xtalk:	xtalk value found in cps (number of photons in count per second) #?
 		"""
 		tmp= 0
 		AverageSignalRate = 0
