@@ -61,18 +61,18 @@ import time
 print("VL53L1X Qwiic Test\n")
 ToF = qwiic.QwiicVL53L1X()
 
-if (ToF.SensorInit() == None):					 # Begin returns 0 on a good init
+if (ToF.sensor_init() == None):					 # Begin returns 0 on a good init
 	print("Sensor online!\n")
 
-ToF.SetDistanceMode(1)	# Sets Distance Mode Short (Long- Change value to 2)
+ToF.set_distance_mode(1)	# Sets Distance Mode Short (Long- Change value to 2)
 
 while True:
 	try:
-		ToF.StartRanging()						 # Write configuration bytes to initiate measurement
+		ToF.start_ranging()						 # Write configuration bytes to initiate measurement
 		time.sleep(.005)
-		distance = ToF.GetDistance()	 # Get the result of the measurement from the sensor
+		distance = ToF.get_distance()	 # Get the result of the measurement from the sensor
 		time.sleep(.005)
-		ToF.StopRanging()
+		ToF.stop_ranging()
 
 		distanceInches = distance / 25.4
 		distanceFeet = distanceInches / 12.0

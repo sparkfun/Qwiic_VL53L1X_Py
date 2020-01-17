@@ -65,10 +65,10 @@ import time, statistics
 print("VL53L1X Qwiic Test\n")
 ToF = qwiic.QwiicVL53L1X()
 
-if (ToF.SensorInit() == None):					 # Begin returns 0 on a good init
+if (ToF.sensor_init() == None):					 # Begin returns 0 on a good init
 	print("Sensor online!\n")
 
-ToF.SetDistanceMode(1)	# Sets Distance Mode Short (Long- Change value to 2)
+ToF.set_distance_mode(1)	# Sets Distance Mode Short (Long- Change value to 2)
 
 distance = [] # Initialize list
 
@@ -76,11 +76,11 @@ while True:
 	start = time.time()
 
 	try:
-		ToF.StartRanging()									# Write configuration bytes to initiate measurement
+		ToF.start_ranging()									# Write configuration bytes to initiate measurement
 		time.sleep(.005)
-		distance.append(ToF.GetDistance())	# Get the result of the measurement from the sensor
+		distance.append(ToF.get_distance())	# Get the result of the measurement from the sensor
 		time.sleep(.005)
-		ToF.StopRanging()
+		ToF.stop_ranging()
 
 	except Exception as e:
 		print(e)
@@ -96,8 +96,8 @@ while True:
 		distance.remove(distance[0])
 		avgdistance = statistics.mean(distance[len(distance)-10:len(distance)+1]) # Running average of last 10 measurements
 	
-	signalrate = ToF.GetSignalRate()
-	rangestatus = ToF.GetRangeStatus()
+	signalrate = ToF.get_signal_rate()
+	rangestatus = ToF.get_range_status()
 	
 	#print("Distance(mm): %s avgDistance(mm): %s Distance(ft): %.3f Signal Rate: %s Range Status: %s Hz: %.5f" % (distance[len(distance)-1], avgdistance, distanceFeet, signalrate, rangestatus,(end-start)))
 	print("Distance(mm): %s avgDistance(mm): %.2f Signal Rate: %s Range Status: %s Hz: %.5f" % (distance[len(distance)-1], avgdistance, signalrate, rangestatus,(end-start)))

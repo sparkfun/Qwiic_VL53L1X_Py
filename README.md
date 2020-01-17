@@ -103,15 +103,15 @@ def runExample():
 			file=sys.stderr)
 		return
 
-	mySensor.SensorInit()
+	mySensor.sensor_init()
   
 	while True:
         try:
-            mySensor.StartRanging()						 # Write configuration bytes to initiate measurement
+            mySensor.start_ranging()						 # Write configuration bytes to initiate measurement
             time.sleep(.005)
-            distance = mySensor.GetDistance()	 # Get the result of the measurement from the sensor
+            distance = mySensor.get_distance()	 # Get the result of the measurement from the sensor
             time.sleep(.005)
-            mySensor.StopRanging()
+            mySensor.stop_ranging()
 
             print("Distance(mm): %s" % distance)
 

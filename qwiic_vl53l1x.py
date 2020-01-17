@@ -195,8 +195,8 @@ VL51L1X_DEFAULT_CONFIGURATION = [
 0x00,	# 0x2d : set bit 2 and 5 to 1 for fast plus mode (1MHz I2C), else don't touch
 0x01,	# 0x2e : bit 0 if I2C pulled up at 1.8V, else set bit 0 to 1 (pull up at AVDD)
 0x01,	# 0x2f : bit 0 if GPIO pulled up at 1.8V, else set bit 0 to 1 (pull up at AVDD)
-0x01,	# 0x30 : set bit 4 to 0 for active high interrupt and 1 for active low (bits 3:0 must be 0x1), use SetInterruptPolarity()
-0x02,	# 0x31 : bit 1 = interrupt depending on the polarity, use CheckForDataReady()
+0x01,	# 0x30 : set bit 4 to 0 for active high interrupt and 1 for active low (bits 3:0 must be 0x1), use set_interrupt_polarity()
+0x02,	# 0x31 : bit 1 = interrupt depending on the polarity, use check_for_data_ready()
 0x00,	# 0x32 : not user-modifiable
 0x02,	# 0x33 : not user-modifiable
 0x08,	# 0x34 : not user-modifiable
@@ -247,15 +247,15 @@ VL51L1X_DEFAULT_CONFIGURATION = [
 0x01,	# 0x61 : not user-modifiable
 0xf1,	# 0x62 : not user-modifiable
 0x0d,	# 0x63 : not user-modifiable
-0x01,	# 0x64 : Sigma threshold MSB (mm in 14.2 format for MSB+LSB), use SetSigmaThreshold(), default value 90 mm 
+0x01,	# 0x64 : Sigma threshold MSB (mm in 14.2 format for MSB+LSB), use set_sigma_threshold(), default value 90 mm 
 0x68,	# 0x65 : Sigma threshold LSB
-0x00,	# 0x66 : Min count Rate MSB (MCPS in 9.7 format for MSB+LSB), use SetSignalThreshold()
+0x00,	# 0x66 : Min count Rate MSB (MCPS in 9.7 format for MSB+LSB), use set_signal_threshold()
 0x80,	# 0x67 : Min count Rate LSB
 0x08,	# 0x68 : not user-modifiable
 0xb8,	# 0x69 : not user-modifiable
 0x00,	# 0x6a : not user-modifiable
 0x00,	# 0x6b : not user-modifiable
-0x00,	# 0x6c : Intermeasurement period MSB, 32 bits register, use SetIntermeasurementInMs()
+0x00,	# 0x6c : Intermeasurement period MSB, 32 bits register, use set_inter_measurement_in_ms()
 0x00,	# 0x6d : Intermeasurement period
 0x0f,	# 0x6e : Intermeasurement period
 0x89,	# 0x6f : Intermeasurement period LSB
@@ -274,15 +274,15 @@ VL51L1X_DEFAULT_CONFIGURATION = [
 0x00,	# 0x7c : not user-modifiable
 0x00,	# 0x7d : not user-modifiable
 0x02,	# 0x7e : not user-modifiable
-0xc7,	# 0x7f : ROI center, use SetROI()
-0xff,	# 0x80 : XY ROI (X=Width, Y=Height), use SetROI()
+0xc7,	# 0x7f : ROI center, use set_roi()
+0xff,	# 0x80 : XY ROI (X=Width, Y=Height), use set_roi()
 0x9B,	# 0x81 : not user-modifiable
 0x00,	# 0x82 : not user-modifiable
 0x00,	# 0x83 : not user-modifiable
 0x00,	# 0x84 : not user-modifiable
 0x01,	# 0x85 : not user-modifiable
-0x00,	# 0x86 : clear interrupt, use ClearInterrupt()
-0x00	# 0x87 : start ranging, use StartRanging() or StopRanging(), If you want an automatic start after self.init() call, put 0x40 in location 0x87
+0x00,	# 0x86 : clear interrupt, use clear_interrupt()
+0x00	# 0x87 : start ranging, use start_ranging() or stop_ranging(), If you want an automatic start after self.init() call, put 0x40 in location 0x87
 ]
 ###############################################################################
 ###############################################################################
@@ -532,37 +532,41 @@ class QwiicVL53L1X(object):
 			self.debug = debug	# Debug Statements Enabled (1)
 
 
-	def _Init(self):
+	def _begin(self):
 		"""
 		One time device initialization
 		:return:	0 on success
 					#CALIBRATION_WARNING if failed
 		"""
-		return self.SensorInit()
+		return self.sensor_init()
 
 
-	def _ReadID(self):
+	def _read_id(self):
 		"""
 		Read function of the ID device. (Verifies id ID matches factory number).
 		:return:	 0- Correct
 					-1- Failure
 		"""
-		if (self.GetSensorId() == 0xEEAC):
+		if (self.get_sensor_id() == 0xEEAC):
 			return 0
 		return -1
-	
 
-	def GetDistance(self):
-		"""
-		Get ranging result and only that
 
-		:return pRange_mm:	Range distance in mm
-		:rtype: 			Integer
+	def get_distance(self):
 		"""
-		distance = self._GetDistance_()
+		This function returns the distance measured by the sensor in mm
+
+		:return:	Distance measured by the sensor in mm
+		:rtype:		Integer
+		"""
+		self.status = 0
+		distance = self.__i2cRead(self.address,
+				VL53L1_RESULT__FINAL_CROSSTALK_CORRECTED_RANGE_MM_SD0, 2)
+
 		return distance
 
-	def InitSensor(self, address):
+
+	def init_sensor(self, address):
 		"""
 		Initialize the sensor with default values
 
@@ -573,7 +577,7 @@ class QwiicVL53L1X(object):
 		sensorState = 0
 		# VL53L1_Off()
 		# VL53L1_On()
-		self.status = self.SetI2CAddress(address)
+		self.status = self.set_i2c_address(address)
 	
 		if self.debug == 1:
 			byteData = self.__i2cRead(self.address, 0x010F, 1)
@@ -587,11 +591,11 @@ class QwiicVL53L1X(object):
 	
 	
 		while (not sensorState and not self.status):
-			sensorState = self.BootState()
+			sensorState = self.boot_state()
 			time.sleep(2/1000)
 		
 		if (not self.status):
-			self.status = self.SensorInit()
+			self.status = self.sensor_init()
 	
 		return self.status
 
@@ -601,7 +605,7 @@ class QwiicVL53L1X(object):
 	###############################################################################
 	###############################################################################
 
-	def GetSWVersion(self):
+	def get_sw_version(self):
 		"""
 		This function returns the SW driver version
 
@@ -618,7 +622,7 @@ class QwiicVL53L1X(object):
 
 
 
-	def SetI2CAddress(self, new_address):
+	def set_i2c_address(self, new_address):
 		"""
 		This function sets the sensor I2C address used in case multiple devices application, default address **0x29** (0x52 >> 1)
 
@@ -631,7 +635,7 @@ class QwiicVL53L1X(object):
 		
 		return self.status
 
-	def SensorInit(self):
+	def sensor_init(self):
 		"""
 		This function loads the 135 bytes default values to initialize the sensor.
 
@@ -646,24 +650,24 @@ class QwiicVL53L1X(object):
 		for Addr in range(0x2D, 0x87 + 1):
 			self.status = self.__i2cWrite(self.address, Addr, VL51L1X_DEFAULT_CONFIGURATION[Addr - 0x2D], 1)
 		
-		self.status = self.StartRanging()
+		self.status = self.start_ranging()
 		while(tmp == 0):
-				tmp = self.CheckForDataReady()
+				tmp = self.check_for_data_ready()
 				timeout = timeout + 1
 				if (timeout > 50):
 					self.status = VL53L1_ERROR_TIME_OUT
 					return self.status
 		
 		tmp = 0
-		self.status = self.ClearInterrupt()
-		self.status = self.StopRanging()
+		self.status = self.clear_interrupt()
+		self.status = self.stop_ranging()
 		self.status = self.__i2cWrite(self.address, VL53L1_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND, 0x09, 1) #  two bounds VHV
 		self.status = self.__i2cWrite(self.address, 0x0B, 0, 1) #  start VHV from the previous temperature
 		
 		return self.status
 
 
-	def ClearInterrupt(self):
+	def clear_interrupt(self):
 		"""
 		This function clears the interrupt, to be called after a ranging data reading to arm the interrupt for the next data ready event.
 		"""
@@ -673,7 +677,7 @@ class QwiicVL53L1X(object):
 		return self.status
 
 
-	def SetInterruptPolarity(self, NewPolarity):
+	def set_interrupt_polarity(self, NewPolarity):
 		"""
 		This function programs the interrupt polarity
 
@@ -689,7 +693,7 @@ class QwiicVL53L1X(object):
 		return self.status
 
 
-	def GetInterruptPolarity(self):
+	def get_interrupt_polarity(self):
 		"""
 		This function returns the current interrupt polarity
 
@@ -705,11 +709,11 @@ class QwiicVL53L1X(object):
 		return pInterruptPolarity
 
 
-	def StartRanging(self):
+	def start_ranging(self):
 		"""
 		This function starts the ranging distance operation
 		The ranging operation is continuous. The clear interrupt has to be done after each get data to allow the interrupt to raise when the next data is ready
-		1=active high (**default**), 0=active low, use SetInterruptPolarity() to change the interrupt polarity if required.
+		1=active high (**default**), 0=active low, use set_interrupt_polarity() to change the interrupt polarity if required.
 		"""
 		self.status = 0
 		self.status = self.__i2cWrite(self.address, SYSTEM__MODE_START, 0x40, 1)	#  Enable VL53L1X
@@ -717,7 +721,7 @@ class QwiicVL53L1X(object):
 		return self.status
 
 
-	def StopRanging(self):
+	def stop_ranging(self):
 		"""
 		This function stops the ranging.
 		"""
@@ -727,7 +731,7 @@ class QwiicVL53L1X(object):
 		return self.status
 
 
-	def CheckForDataReady(self):
+	def check_for_data_ready(self):
 		"""
 		This function checks if the new ranging data is available by polling the dedicated register.
 
@@ -736,7 +740,7 @@ class QwiicVL53L1X(object):
 		"""
 		self.status = 0
 
-		IntPol = self.GetInterruptPolarity()
+		IntPol = self.get_interrupt_polarity()
 		Temp = self.__i2cRead(self.address, GPIO__TIO_HV_STATUS, 1)
 		
 		# Read in the register to check if a new value is available
@@ -749,7 +753,7 @@ class QwiicVL53L1X(object):
 		return isDataReady
 
 
-	def SetTimingBudgetInMs(self, TimingBudgetInMs):
+	def set_timing_budget_in_ms(self, TimingBudgetInMs):
 		"""
 		This function programs the timing budget in ms.
 
@@ -757,7 +761,7 @@ class QwiicVL53L1X(object):
 		"""
 		self.status = 0
 
-		DM = self.GetDistanceMode()
+		DM = self.get_distance_mode()
 		if (DM == 0):
 			return 1
 		elif (DM == 1):	# Short DistanceMode
@@ -810,7 +814,7 @@ class QwiicVL53L1X(object):
 		return self.status
 
 
-	def GetTimingBudgetInMs(self):
+	def get_timing_budget_in_ms(self):
 		"""
 		This function returns the current timing budget in ms.
 		"""
@@ -818,7 +822,7 @@ class QwiicVL53L1X(object):
 
 		Temp = self.__i2cRead(self.address, RANGE_CONFIG__TIMEOUT_MACROP_A_HI, 2)
 
-		def GetTimingBudgetInMs_switch(var):
+		def get_timing_budget_in_ms_switch(var):
 			switcher = {
 				0x001D:15,
 				0x0051:20,
@@ -835,12 +839,12 @@ class QwiicVL53L1X(object):
 				0x048F:500}
 			return switcher.get(var,0)
 
-		pTimingBudget = GetTimingBudgetInMs_switch(Temp)
+		pTimingBudget = get_timing_budget_in_ms_switch(Temp)
 
 		return pTimingBudget
 
 
-	def SetDistanceMode(self, DM):
+	def set_distance_mode(self, DM):
 		"""
 		This function programs the distance mode (1=short, 2=long(default)).
 
@@ -849,7 +853,7 @@ class QwiicVL53L1X(object):
 		"""
 		self.status = 0
 
-		TB = self.GetTimingBudgetInMs()
+		TB = self.get_timing_budget_in_ms()
 		if DM == 1:
 			self.status = self.__i2cWrite(self.address, PHASECAL_CONFIG__TIMEOUT_MACROP, 0x14, 1)
 			self.status = self.__i2cWrite(self.address, RANGE_CONFIG__VCSEL_PERIOD_A, 0x07, 1)
@@ -868,11 +872,11 @@ class QwiicVL53L1X(object):
 			if self.debug == 1:
 				print("Invalid DIstance Mode")
 
-		self.status = self.SetTimingBudgetInMs(TB)
+		self.status = self.set_timing_budget_in_ms(TB)
 		return self.status
 
 
-	def GetDistanceMode(self):
+	def get_distance_mode(self):
 		"""
 		This function returns the current distance mode (1=short, 2=long).
 
@@ -889,7 +893,7 @@ class QwiicVL53L1X(object):
 		return DM
 
 
-	def SetInterMeasurementInMs(self, InterMeasMs):
+	def set_inter_measurement_in_ms(self, InterMeasMs):
 		"""
 		This function programs the Intermeasurement period in ms.
 
@@ -907,7 +911,7 @@ class QwiicVL53L1X(object):
 		return self.status
 
 
-	def GetInterMeasurementInMs(self):
+	def get_inter_measurement_in_ms(self):
 		"""
 		This function returns the Intermeasurement period in ms.
 
@@ -926,7 +930,7 @@ class QwiicVL53L1X(object):
 		return pIM
 
 
-	def BootState(self):
+	def boot_state(self):
 		"""
 		This function returns the boot state of the device (1:booted, 0:not booted)
 		
@@ -942,7 +946,7 @@ class QwiicVL53L1X(object):
 		return state
 
 
-	def GetSensorId(self):
+	def get_sensor_id(self):
 		"""
 		This function returns the sensor id, sensor Id must be 0xEEAC
 
@@ -957,21 +961,7 @@ class QwiicVL53L1X(object):
 		return sensorId
 
 
-	def _GetDistance_(self):
-		"""
-		This function returns the distance measured by the sensor in mm
-
-		:return:	Distance measured by the sensor in mm
-		:rtype:		Integer
-		"""
-		self.status = 0
-		distance = self.__i2cRead(self.address,
-				VL53L1_RESULT__FINAL_CROSSTALK_CORRECTED_RANGE_MM_SD0, 2)
-
-		return distance
-
-
-	def GetSignalPerSpad(self):
+	def get_signal_per_spad(self):
 		"""
 		This function returns the returned signal per SPAD in kcps/SPAD (kcps stands for Kilo Count Per Second).
 
@@ -989,7 +979,7 @@ class QwiicVL53L1X(object):
 		return signalRate
 
 
-	def GetAmbientPerSpad(self):
+	def get_ambient_per_spad(self):
 		"""
 		This function returns the ambient per SPAD in kcps/SPAD
 
@@ -1005,7 +995,7 @@ class QwiicVL53L1X(object):
 		return ambPerSp
 
 
-	def GetSignalRate(self):
+	def get_signal_rate(self):
 		"""
 		This function returns the returned signal in kcps.
 
@@ -1019,7 +1009,7 @@ class QwiicVL53L1X(object):
 		return signal
 
 
-	def GetSpadNb(self):
+	def get_spad_nb(self):
 		"""
 		This function returns the current number of enabled SPADs
 
@@ -1033,7 +1023,7 @@ class QwiicVL53L1X(object):
 		return spNb
 
 
-	def GetAmbientRate(self):
+	def get_ambient_rate(self):
 		"""
 		This function returns the ambient rate in kcps
 
@@ -1046,7 +1036,7 @@ class QwiicVL53L1X(object):
 		return ambRate
 
 
-	def GetRangeStatus(self):
+	def get_range_status(self):
 		"""
 		This function returns the ranging status error
 
@@ -1061,7 +1051,7 @@ class QwiicVL53L1X(object):
 		RgSt = self.__i2cRead(self.address, VL53L1_RESULT__RANGE_STATUS, 1)
 		RgSt = RgSt&0x1F
 
-		def GetRangeStatus_switch(var):
+		def get_range_status_switch(var):
 			switcher = {
 				9:0,
 				6:1,
@@ -1078,12 +1068,12 @@ class QwiicVL53L1X(object):
 				13:13}
 			return switcher.get(var,255)
 		
-		rangeStatus = GetRangeStatus_switch(RgSt)
+		rangeStatus = get_range_status_switch(RgSt)
 
 		return rangeStatus
 
 
-	def SetOffset(self, OffsetValue):
+	def set_offset(self, OffsetValue):
 		"""
 		This function programs the offset correction in mm
 
@@ -1100,7 +1090,7 @@ class QwiicVL53L1X(object):
 		return self.status
 
 
-	def GetOffset(self):
+	def get_offset(self):
 		"""
 		This function returns the programmed offset correction value in mm
 
@@ -1116,7 +1106,7 @@ class QwiicVL53L1X(object):
 		return offset
 
 
-	def SetXtalk(self, XtalkValue):
+	def set_xtalk(self, XtalkValue):
 		"""
 		This function programs the xtalk correction value in cps (Count Per Second).
 		This is the number of photons reflected back from the cover glass in cps.
@@ -1136,7 +1126,7 @@ class QwiicVL53L1X(object):
 		return self.status
 
 
-	def GetXtalk(self):
+	def get_xtalk(self):
 		"""
 		This function returns the current programmed xtalk correction value in cps
 
@@ -1149,17 +1139,17 @@ class QwiicVL53L1X(object):
 		return xtalk
 
 
-	def SetDistanceThreshold(self,
+	def set_distance_threshold(self,
 					ThreshLow,
 					ThreshHigh, Window,
 					IntOnNoTarget):
 		"""
 		This function programs the threshold detection mode
 		Example:
-			* self.SetDistanceThreshold(100,300,0,1): Below 100 
-			* self.SetDistanceThreshold(100,300,1,1): Above 300 
-			* self.SetDistanceThreshold(100,300,2,1): Out of window 
-			* self.SetDistanceThreshold(100,300,3,1): In window 
+			* self.set_distance_threshold(100,300,0,1): Below 100 
+			* self.set_distance_threshold(100,300,1,1): Above 300 
+			* self.set_distance_threshold(100,300,2,1): Out of window 
+			* self.set_distance_threshold(100,300,3,1): In window 
 
 		:param mm ThreshLow:	The threshold under which one the device raises an interrupt if Window = 0
 		:param mm ThreshHigh:	The threshold above which one the device raises an interrupt if Window = 1
@@ -1190,7 +1180,7 @@ class QwiicVL53L1X(object):
 		return self.status
 
 
-	def GetDistanceThresholdWindow(self):
+	def get_distance_threshold_window(self):
 		"""
 		This function returns the window detection mode (0=below 1=above 2=out 3=in)
 		
@@ -1209,7 +1199,7 @@ class QwiicVL53L1X(object):
 		return window
 
 
-	def GetDistanceThresholdLow(self):
+	def get_distance_threshold_low(self):
 		"""
 		This function returns the low threshold in mm
 
@@ -1222,7 +1212,7 @@ class QwiicVL53L1X(object):
 		return low
 
 
-	def GetDistanceThresholdHigh(self):
+	def get_distance_threshold_high(self):
 		"""
 		This function returns the high threshold in mm
 		
@@ -1235,7 +1225,7 @@ class QwiicVL53L1X(object):
 		return high
 
 
-	def SetROI(self, X, Y, OpticalCenter = 199):
+	def set_roi(self, X, Y, OpticalCenter = 199):
 		"""
 		This function programs the ROI (Region of Interest). The height and width of the ROI (X, Y) are set in SPADs; the smallest acceptable ROI size = 4 (4 x 4). The optical center is set based on table below.
 		To set the center, use the pad that is to the right and above (i.e. upper right of) the exact center of the region you'd like to measure as your optical center.
@@ -1283,7 +1273,7 @@ class QwiicVL53L1X(object):
 		return self.status
 
 
-	def GetROI_XY(self):
+	def get_roi_xy(self):
 		"""
 		This function returns width X and height Y
 
@@ -1298,7 +1288,7 @@ class QwiicVL53L1X(object):
 		return [ROI_X, ROI_Y]
 
 
-	def SetSignalThreshold(self, Signal):
+	def set_signal_threshold(self, Signal):
 		"""
 		This function programs a new signal threshold in kcps (default=1024 kcps)
 
@@ -1311,7 +1301,7 @@ class QwiicVL53L1X(object):
 		return self.status
 
 
-	def GetSignalThreshold(self):
+	def get_signal_threshold(self):
 		"""
 		This function returns the current signal threshold in kcps
 
@@ -1324,7 +1314,7 @@ class QwiicVL53L1X(object):
 		return signal
 
 
-	def SetSigmaThreshold(self, Sigma):
+	def set_sigma_threshold(self, Sigma):
 		"""
 		This function programs a new sigma threshold in mm (default=15 mm)
 
@@ -1341,7 +1331,7 @@ class QwiicVL53L1X(object):
 		return self.status
 
 
-	def GetSigmaThreshold(self):
+	def get_sigma_threshold(self):
 		"""
 		This function returns the current sigma threshold in mm
 
@@ -1356,7 +1346,7 @@ class QwiicVL53L1X(object):
 		return sigma
 
 
-	def StartTemperatureUpdate(self):
+	def start_temperature_update(self):
 		"""
 		This function performs the temperature calibration.
 		It is recommended to call this function any time the temperature might have changed by more than 8 deg C
@@ -1367,13 +1357,13 @@ class QwiicVL53L1X(object):
 
 		self.status = self.__i2cWrite(self.address,VL53L1_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND,0x81, 1) #  full VHV
 		self.status = self.__i2cWrite(self.address,0x0B,0x92, 1)
-		self.status = self.StartRanging()
+		self.status = self.start_ranging()
 		while(tmp==0):
-			tmp = self.CheckForDataReady()
+			tmp = self.check_for_data_ready()
 		
 		tmp = 0
-		self.status = self.ClearInterrupt()
-		self.status = self.StopRanging()
+		self.status = self.clear_interrupt()
+		self.status = self.stop_ranging()
 		self.status = self.__i2cWrite(self.address, VL53L1_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND, 0x09, 1) #  two bounds VHV
 		self.status = self.__i2cWrite(self.address, 0x0B, 0, 1) #  start VHV from the previous temperature
 
@@ -1385,7 +1375,7 @@ class QwiicVL53L1X(object):
 	###############################################################################
 	###############################################################################
 
-	def CalibrateOffset(self, TargetDistInMm):
+	def calibrate_offset(self, TargetDistInMm):
 		"""
 		This function performs the offset calibration.
 		The function returns the offset value found and programs the offset compensation into the device.
@@ -1403,17 +1393,17 @@ class QwiicVL53L1X(object):
 		self.status = self.__i2cWrite(self.address, ALGO__PART_TO_PART_RANGE_OFFSET_MM, 0x0, 2)
 		self.status = self.__i2cWrite(self.address, MM_CONFIG__INNER_OFFSET_MM, 0x0, 2)
 		self.status = self.__i2cWrite(self.address, MM_CONFIG__OUTER_OFFSET_MM, 0x0, 2)
-		self.status = self.StartRanging()	# Enable VL53L1X sensor
+		self.status = self.start_ranging()	# Enable VL53L1X sensor
 		for i in range(0, 50):
 			while (tmp == 0):
-				tmp = self.CheckForDataReady()
+				tmp = self.check_for_data_ready()
 			
 			tmp = 0
-			distance = self._GetDistance_()
-			self.status = self.ClearInterrupt()
+			distance = self.get_distance()
+			self.status = self.clear_interrupt()
 			AverageDistance = AverageDistance + distance
 		
-		self.status = self.StopRanging()
+		self.status = self.stop_ranging()
 		AverageDistance = AverageDistance / 50
 		offset = TargetDistInMm - AverageDistance
 		self.status = self.__i2cWrite(self.address, ALGO__PART_TO_PART_RANGE_OFFSET_MM, offset*4, 2)
@@ -1421,7 +1411,7 @@ class QwiicVL53L1X(object):
 		return self.status #,offset???
 
 
-	def CalibrateXtalk(self, TargetDistInMm):
+	def calibrate_xtalk(self, TargetDistInMm):
 		"""
 		This function performs the xtalk calibration.
 		The function returns the xtalk value found and programs the xtalk compensation to the device
@@ -1442,21 +1432,21 @@ class QwiicVL53L1X(object):
 		self.status = 0
 
 		self.status = self.__i2cWrite(self.address, 0x0016,0, 2)
-		self.status = self.StartRanging()
+		self.status = self.start_ranging()
 		for i in range(0, 50):
 			while (tmp == 0):
-				tmp = self.CheckForDataReady()
+				tmp = self.check_for_data_ready()
 			
 			tmp=0
-			sr= self.GetSignalRate()
-			distance= self._GetDistance_()
-			self.status = self.ClearInterrupt()
+			sr= self.get_signal_rate()
+			distance= self.get_distance()
+			self.status = self.clear_interrupt()
 			AverageDistance = AverageDistance + distance
-			spadNum = self.GetSpadNb()
+			spadNum = self.get_spad_nb()
 			AverageSpadNb = AverageSpadNb + spadNum
 			AverageSignalRate =	AverageSignalRate + sr
 		
-		self.status = self.StopRanging()
+		self.status = self.stop_ranging()
 		AverageDistance = AverageDistance / 50
 		AverageSpadNb = AverageSpadNb / 50
 		AverageSignalRate = AverageSignalRate / 50
@@ -1472,7 +1462,7 @@ class QwiicVL53L1X(object):
 
 # protected:
 
-	def __GetTickCount(self):
+	def __get_tick_count(self):
 		"""
 		Returns current tick count in [ms]
 		"""
@@ -1484,19 +1474,19 @@ class QwiicVL53L1X(object):
 		return ptick_count_ms
 
 
-	def __WaitUs(self, wait_us):
+	def __wait_us(self, wait_us):
 		time.sleep(wait_us/1000/1000)
 		return VL53L1_ERROR_NONE
 
 
-	def __WaitMs(self, wait_ms):
+	def __wait_ms(self, wait_ms):
 		time.sleep(wait_ms/1000)
 		return VL53L1_ERROR_NONE
 	
 
-	def __WaitValueMaskEx(self, timeout_ms, index, value, mask, poll_delay_ms):
+	def __wait_value_mask_ex(self, timeout_ms, index, value, mask, poll_delay_ms):
 		"""
-		Platform implementation of WaitValueMaskEx V2WReg script command
+		Platform implementation of ```WaitValueMaskEx``` V2WReg script command
 		"""
 
 		self.status	 = VL53L1_ERROR_NONE
@@ -1510,7 +1500,7 @@ class QwiicVL53L1X(object):
 
 		# calculate time limit in absolute time
 
-		start_time_ms = self.__GetTickCount()
+		start_time_ms = self.__get_tick_count()
 
 		# remember current trace functions and temporarily disable function logging
 
@@ -1529,10 +1519,10 @@ class QwiicVL53L1X(object):
 			if (self.status == VL53L1_ERROR_NONE and
 				found == 0 and
 				poll_delay_ms > 0):
-				self.status = self.__WaitMs(poll_delay_ms)
+				self.status = self.__wait_ms(poll_delay_ms)
 
 			# Update polling time (Compare difference rather than absolute to negate 32bit wrap around issue)
-			current_time_ms = self.__GetTickCount()
+			current_time_ms = self.__get_tick_count()
 			polling_time_ms = current_time_ms - start_time_ms
 
 		if (found == 0 and self.status == VL53L1_ERROR_NONE):
