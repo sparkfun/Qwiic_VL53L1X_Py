@@ -605,20 +605,20 @@ class QwiicVL53L1X(object):
 	###############################################################################
 	###############################################################################
 
-    def soft_reset(self):
-        """
-        This function causes the device to perform a soft reset
-        """
-        self_status = 0
-        
-        self.status = self.__i2cWrite(self.address, SOFT_RESET, 0)
-        if (not self.status):
-            self.time.sleep(0.001)
-        if (not self.status):
-            self.status = self.__i2cWrite(self.address, SOFT_RESET, 1)
+	def soft_reset(self):
+		"""
+		This function causes the device to perform a soft reset
+		"""
+		self_status = 0
+		
+		self.status = self.__i2cWrite(self.address, SOFT_RESET, 0)
+		if (not self.status):
+			self.time.sleep(0.001)
+		if (not self.status):
+			self.status = self.__i2cWrite(self.address, SOFT_RESET, 1)
 
-        return self.status
-        
+		return self.status
+		
 
 
 
