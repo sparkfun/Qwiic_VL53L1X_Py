@@ -611,11 +611,11 @@ class QwiicVL53L1X(object):
 		"""
 		self_status = 0
 		
-		self.status = self.__i2cWrite(self.address, SOFT_RESET, 0)
+		self.status = self.__i2cWrite(self.address, SOFT_RESET, 0, 1)
 		if (not self.status):
 			self.time.sleep(0.001)
 		if (not self.status):
-			self.status = self.__i2cWrite(self.address, SOFT_RESET, 1)
+			self.status = self.__i2cWrite(self.address, SOFT_RESET, 1, 1)
 
 		return self.status
 		
