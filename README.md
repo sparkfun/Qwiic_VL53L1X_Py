@@ -106,17 +106,17 @@ def runExample():
 	mySensor.sensor_init()
   
 	while True:
-        try:
-            mySensor.start_ranging()						 # Write configuration bytes to initiate measurement
-            time.sleep(.005)
-            distance = mySensor.get_distance()	 # Get the result of the measurement from the sensor
-            time.sleep(.005)
-            mySensor.stop_ranging()
+	try:
+		mySensor.start_ranging()						 # Write configuration bytes to initiate measurement
+		time.sleep(.005)
+		distance = mySensor.get_distance()	 # Get the result of the measurement from the sensor
+		time.sleep(.005)
+		mySensor.stop_ranging()
 
-            print("Distance(mm): %s" % distance)
+		print("Distance(mm): %s" % distance)
 
-        except Exception as e:
-            print(e)
+	except Exception as e:
+		print(e)
 ```
 <p align="center">
 <img src="https://cdn.sparkfun.com/assets/custom_pages/3/3/4/dark-logo-red-flame.png" alt="SparkFun - Start Something">
