@@ -34,7 +34,7 @@ extensions = [
 	'sphinx.ext.autodoc',
 	'sphinx.ext.intersphinx',
 	'sphinx.ext.viewcode',
-	'm2r'
+	'm2r2'
 	]
 
 source_suffix = ['.rst', '.md']
