@@ -601,6 +601,27 @@ class QwiicVL53L1X(object):
 
 
 
+	# VL53L1X_api_core.h functions
+	###############################################################################
+	###############################################################################
+
+	def soft_reset(self):
+		"""
+		This function causes the device to perform a soft reset
+		"""
+		self_status = 0
+		
+		self.status = self.__i2cWrite(self.address, SOFT_RESET, 0, 1)
+		if (not self.status):
+			time.sleep(0.001)
+		if (not self.status):
+			self.status = self.__i2cWrite(self.address, SOFT_RESET, 1, 1)
+
+		return self.status
+		
+
+
+
 	# VL53L1X_api.h functions
 	###############################################################################
 	###############################################################################
@@ -654,7 +675,7 @@ class QwiicVL53L1X(object):
 		while(tmp == 0):
 				tmp = self.check_for_data_ready()
 				timeout = timeout + 1
-				if (timeout > 50):
+				if (timeout > 500):
 					self.status = VL53L1_ERROR_TIME_OUT
 					return self.status
 		
